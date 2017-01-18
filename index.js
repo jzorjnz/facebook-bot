@@ -6,7 +6,7 @@ const request = require('request');
 const app = express();
 
 const token = "EAARMCn5MhLkBAJyYRjlxgu6I3WEkpSKgZBBkeNJZCXZCEiKPOZAeU3DruWZBCDKlhDxNh0Rl5RDZCBIvLUx2OVU9SiM7ftbRSMuBaf1tohvEaRiVRBp3FWu0IrgKKdQYOZBPUOoZBefjuflUEM4vxrXR2px0Y7ZBL2OZB2emlawnRGfwZDZD";
-const tokenTest - 'dsf';
+const tokenTest = 'dsf';
 
 sendTextMessage = function(sender, text) {
     let messageData = { text:text };
