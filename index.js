@@ -6,8 +6,9 @@ const request = require('request')
 const app = express()
 
 const token = "EAARMCn5MhLkBAJyYRjlxgu6I3WEkpSKgZBBkeNJZCXZCEiKPOZAeU3DruWZBCDKlhDxNh0Rl5RDZCBIvLUx2OVU9SiM7ftbRSMuBaf1tohvEaRiVRBp3FWu0IrgKKdQYOZBPUOoZBefjuflUEM4vxrXR2px0Y7ZBL2OZB2emlawnRGfwZDZD";
+const tokenTest - 'dsf';
 
-function sendTextMessage(sender, text) {
+sendTextMessage = function(sender, text) {
     let messageData = { text:text }
     request({
         url: 'https://graph.facebook.com/v2.6/me/messages',
@@ -26,6 +27,10 @@ function sendTextMessage(sender, text) {
     })
 }
 
+sendIndexMessage = function() {
+    return 'Hello world, I am a chat bot. Token is: ' + tokenTest;
+}
+
 app.set('port', (process.env.PORT || 5000))
 
 // Process application/x-www-form-urlencoded
@@ -36,7 +41,7 @@ app.use(bodyParser.json())
 
 // Index route
 app.get('/', function (req, res) {
-    res.send('Hello world, I am a chat bot')
+    res.send(sendIndexMessage());
 })
 
 // for Facebook verification
