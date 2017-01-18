@@ -1,0 +1,28 @@
+{
+  "name": "fb-bot",
+  "version": "1.0.0",
+  "description": "facebook bot",
+  "main": "index.js",
+  "scripts": {
+    "test": "testbot"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/syed-zeeshan/facebook-bot.git"
+  },
+  "keywords": [
+    "Facebook",
+    "bot"
+  ],
+  "author": "Syed Zeeshan",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/syed-zeeshan/facebook-bot/issues"
+  },
+  "homepage": "https://github.com/syed-zeeshan/facebook-bot#readme",
+  "dependencies": {
+    "body-parser": "^1.16.0",
+    "express": "^4.14.0",
+    "request": "^2.79.0"
+  }
+}
