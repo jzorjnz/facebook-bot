@@ -8,7 +8,7 @@ const app = express();
 const token = "EAARMCn5MhLkBAJyYRjlxgu6I3WEkpSKgZBBkeNJZCXZCEiKPOZAeU3DruWZBCDKlhDxNh0Rl5RDZCBIvLUx2OVU9SiM7ftbRSMuBaf1tohvEaRiVRBp3FWu0IrgKKdQYOZBPUOoZBefjuflUEM4vxrXR2px0Y7ZBL2OZB2emlawnRGfwZDZD";
 const tokenTest = 'dsf';
 
-sendTextMessage = function(sender, text) {
+function sendTextMessage(sender, text) {
     let messageData = { text:text };
     request({
         url: 'https://graph.facebook.com/v2.6/me/messages',
@@ -20,14 +20,14 @@ sendTextMessage = function(sender, text) {
         }
     }, function(error, response, body) {
         if (error) {
-            console.log('Error sending messages: ', error);
+            console.log('sendTextMessage | Error sending messages: ', error);
         } else if (response.body.error) {
-            console.log('Error: ', response.body.error);
+            console.log('sendTextMessage | Error: ', response.body.error);
         }
     });
 }
 
-sendIndexMessage = function() {
+function sendIndexMessage() {
     return 'Hello world, I am a chat bot. Token is: ' + tokenTest;
 }
 
