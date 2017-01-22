@@ -1,4 +1,11 @@
 {
+  "payload":{
+    "PAYLOAD_SHOW_WEATHER": "PAYLOAD_SHOW_WEATHER",
+    "PAYLOAD_SHOW_RANKING": "PAYLOAD_SHOW_RANKING",
+    "PAYLOAD_SHOW_BOOKING": "PAYLOAD_SHOW_BOOKING",
+    "PAYLOAD_SHOW_SCORE": "PAYLOAD_SHOW_SCORE",
+    "PAYLOAD_SHOW_ADDRESS": "PAYLOAD_SHOW_ADDRESS"
+  },
   "chat":[
     {
       "keywords":[
@@ -7,8 +14,44 @@
         "hi", 
         "hello"
       ],
-      "response": { 
-        "text": "Hello, welcome to facebook bot. I'm here to help you. Let's get started! Use different keywords like Address, Menu, Timings, Schedule, Shop, Buy, Scores and Results to find more."
+      "response": {
+        "attachment": {
+          "type": "template",
+          "payload": {
+            "template_type": "generic",
+            "elements": [{
+              "title": "Welcome!",
+              "subtitle": "Hi! I am facebook bot and I am here to assist you. Please choose any option to begin",
+              "buttons": [
+                {
+                  "type": "postback",
+                  "title": "Ranking",
+                  "payload": "PAYLOAD_SHOW_RANKING"
+                },
+                {
+                  "type": "postback",
+                  "title": "Weather",
+                  "payload": "PAYLOAD_SHOW_WEATHER"
+                },
+                {
+                  "type": "postback",
+                  "title": "Booking",
+                  "payload": "PAYLOAD_SHOW_BOOKING"
+                },
+                {
+                  "type": "postback",
+                  "title": "Score",
+                  "payload": "PAYLOAD_SHOW_SCORE"
+                },
+                {
+                  "type": "postback",
+                  "title": "Address",
+                  "payload": "PAYLOAD_SHOW_ADDRESS"
+                }
+              ]
+            }]
+          }
+        }
       }
     },
     {
@@ -86,6 +129,7 @@
       "keywords":[
         "calendar", 
         "time",
+        "timing",
         "schedule"
       ],
       "response": {
@@ -121,11 +165,11 @@
               "buttons": [{
                 "title":"Score",
                 "type":"web_url",
-                "url":"http://www.parislevallois.com/549_p_35599/classement.html",
+                "url":"http://www.parislevallois.com/549_p_35596/calendrier-resultats.html",
                 "webview_height_ratio":"full"
               }],
               "image_url": "http://www.parislevallois.com/offres/file_inline_src/549/549_img_090215_093622.png",
-              "item_url": "http://www.parislevallois.com/549_p_35599/classement.html",
+              "item_url": "http://www.parislevallois.com/549_p_35596/calendrier-resultats.html",
               "subtitle":"Click to show scores",
               "title":"Show SCores"
             }],
