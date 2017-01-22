@@ -1,6 +1,7 @@
 {
   "payload":{
     "PAYLOAD_SHOW_WEATHER": "PAYLOAD_SHOW_WEATHER",
+    "PAYLOAD_SHOW_SPORTS": "PAYLOAD_SHOW_SPORTS",
     "PAYLOAD_SHOW_RANKING": "PAYLOAD_SHOW_RANKING",
     "PAYLOAD_SHOW_BOOKING": "PAYLOAD_SHOW_BOOKING",
     "PAYLOAD_SHOW_SCORE": "PAYLOAD_SHOW_SCORE",
@@ -26,13 +27,44 @@
               "buttons": [
                 {
                   "type": "postback",
-                  "title": "Ranking",
-                  "payload": "PAYLOAD_SHOW_RANKING"
+                  "title": "Sports",
+                  "payload": "PAYLOAD_SHOW_SPORTS"
                 },
                 {
                   "type": "postback",
                   "title": "Weather",
                   "payload": "PAYLOAD_SHOW_WEATHER"
+                },
+                {
+                  "type": "postback",
+                  "title": "Weather",
+                  "payload": "PAYLOAD_SHOW_ADDRESS"
+                }
+              ]
+            }]
+          }
+        }
+      }
+    },
+    {
+      "keywords":[
+        "PAYLOAD_SHOW_SPORTS", 
+        "sports"
+      ],
+      "response": {
+        "attachment": {
+          "type": "template",
+          "payload": {
+            "template_type": "generic",
+            "elements": [{
+              "title": "Sports!",
+              "subtitle": "Please choose any option to continue",
+              "image_url": "http://messengerdemo.parseapp.com/img/rift.png",
+              "buttons": [
+                {
+                  "type": "postback",
+                  "title": "Ranking",
+                  "payload": "PAYLOAD_SHOW_RANKING"
                 },
                 {
                   "type": "postback",
@@ -43,11 +75,6 @@
                   "type": "postback",
                   "title": "Score",
                   "payload": "PAYLOAD_SHOW_SCORE"
-                },
-                {
-                  "type": "postback",
-                  "title": "Address",
-                  "payload": "PAYLOAD_SHOW_ADDRESS"
                 }
               ]
             }]
@@ -126,6 +153,24 @@
       }
     },
     
+    {
+      "keywords":[
+        "menus", 
+        "menu"
+      ],
+      "response": {
+        "text": "Here's the menu!"
+      }
+    },
+    {
+      "keywords":[
+        "weather", 
+        "PAYLOAD_SHOW_WEATHER"
+      ],
+      "response": { 
+        "text": "Weather is cool!"
+      }
+    },
     {
       "keywords":[
         "menus", 
