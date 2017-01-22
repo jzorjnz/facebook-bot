@@ -1,6 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const request = require('request');
+const cache = require('../cache/cache'); // get the mongoose model
 const app = express();
 
 module.exports = function(app){
