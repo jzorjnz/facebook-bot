@@ -6,6 +6,7 @@ const request = require('request');
 const app = express();
 
 const keys = require('./config/keys.json');
+const cache = require('./app/cache/cache');
 
 /**
  *  Define the sample application.
@@ -159,6 +160,7 @@ var FacebookBotApp = function() {
      */
     self.initialize = function() {
         self.setupVariables();
+        cache.populateCache();
         
         self.setupTerminationHandlers();
         
