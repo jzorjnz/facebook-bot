@@ -17,10 +17,24 @@
         "score"
       ],
       "response": {
-        "type":"web_url",
-        "url":"http://www.parislevallois.com/549_p_35598/classement.html",
-        "title":"Ranking",
-        "webview_height_ratio": "full"
+        "attachment":{
+          "payload":{
+            "elements":[{
+              "buttons": [{
+                "title":"Webview example",
+                "type":"web_url",
+                "url":"http://www.parislevallois.com/549_p_35598/classement.html",
+                "webview_height_ratio":"compact"
+              }],
+              "image_url": "http://www.example.com/image.png",
+              "item_url": "http://www.example.com",
+              "subtitle":"It's a TV!",
+              "title":"Some TV"
+            }],
+            "template_type":"generic"
+          },
+          "type":"template"
+        }
       }
     },
     {
