@@ -24,7 +24,7 @@
                 "title":"Show rankings",
                 "type":"web_url",
                 "url":"http://www.parislevallois.com/549_p_35598/classement.html",
-                "webview_height_ratio":"compact"
+                "webview_height_ratio":"full"
               }],
               "image_url": "http://www.parislevallois.com/offres/file_inline_src/549/549_img_090215_093622.png",
               "item_url": "http://www.parislevallois.com/549_p_35598/classement.html",
@@ -68,37 +68,27 @@
     {
       "keywords":[
         "shop", 
-        "buy"
+        "buy",
+        "ticket"
       ],
       "response": {
-        "attachment": {
-            "type": "template",
-            "payload": {
-                "template_type": "generic",
-                "elements": [{
-                    "title": "First card",
-                    "subtitle": "Element #1 of an hscroll",
-                    "image_url": "http://messengerdemo.parseapp.com/img/rift.png",
-                    "buttons": [{
-                        "type": "web_url",
-                        "url": "https://www.messenger.com",
-                        "title": "web url"
-                    }, {
-                        "type": "postback",
-                        "title": "Postback",
-                        "payload": "Payload for first element in a generic bubble"
-                    }]
-                }, {
-                    "title": "Second card",
-                    "subtitle": "Element #2 of an hscroll",
-                    "image_url": "http://messengerdemo.parseapp.com/img/gearvr.png",
-                    "buttons": [{
-                        "type": "postback",
-                        "title": "Postback",
-                        "payload": "Payload for second element in a generic bubble"
-                    }]
-                }]
-            }
+        "attachment":{
+          "payload":{
+            "elements":[{
+              "buttons": [{
+                "title":"Buy tickets",
+                "type":"web_url",
+                "url":"http://billetterie.parislevallois.dspsport.com/dsp/WEB/Site/index.htm?wId=PLB&rId=Ticketing",
+                "webview_height_ratio":"full"
+              }],
+              "image_url": "http://www.parislevallois.com/offres/file_inline_src/549/549_img_090215_093622.png",
+              "item_url": "http://billetterie.parislevallois.dspsport.com/dsp/WEB/Site/index.htm?wId=PLB&rId=Ticketing",
+              "subtitle":"Click to buy tickets",
+              "title":"Buy Tickets"
+            }],
+            "template_type":"generic"
+          },
+          "type":"template"
         }
       }
     },
