@@ -16,57 +16,18 @@ var FacebookBotApp = function() {
     //  Scope.
     var self = this;
 
-    /*  ================================================================  */
-    /*  Helper functions.                                                 */
-    /*  ================================================================  */
     /**
      *  Set up server IP address and port # using env variables/defaults.
      */
     self.setupVariables = function() {
         //  Set the environment variables we need.
         self.port      =  (process.env.PORT || 5000);
-
-        /*
-        self.ipaddress = "127.0.0.1";
-        self.port      = 8080;
-
-        if(!server.local){
-          self.ipaddress = keys.server.ip;
-          self.port = keys.server.port;
-          console.log('Running server using ip: ' + self.ipaddress + ' port: ' + self.port);
-        }
-        else {
-            console.log('Running server using local');
-        };
-        */
-        
-        //console.log('Running server using ip: ' + self.ipaddress + ' port: ' + self.port);
-        //self.app.set('port', (process.env.PORT || 5000));
-
     };
-
-    
-    /**
-     *  Populate the cache.
-     */
-    /*
-    self.populateCache = function() {
-        if (typeof self.zcache === "undefined") {
-            self.zcache = { 'index.html': '' };
-        }
-
-        //  Local cache for static content.
-        self.zcache['index.html'] = fs.readFileSync('./index.html');
-    };
-    */
-
     /**
      *  Retrieve entry (content) from cache.
      *  @param {string} key  Key identifying content to retrieve from cache.
      */
-    //self.cache_get = function(key) { return self.zcache[key]; };
-
-
+    
     /**
      *  terminator === the termination handler
      *  Terminate server on receipt of the specified signal.
@@ -98,10 +59,6 @@ var FacebookBotApp = function() {
     };
 
 
-    /*  ================================================================  */
-    /*  App server functions (main app logic here).                       */
-    /*  ================================================================  */
-
     /**
      *  Create the routing table entries + handlers for the application.
      */
@@ -110,23 +67,11 @@ var FacebookBotApp = function() {
         require('./app/routes/webhook')(self.app);
     }
 
+    /**
+     *  Initialize the node.js application.
+     */
     self.initializeApp = function() {
         self.app = express();
-        
-        // allow CORS
-        /*
-        self.app.all('*', function(req, res, next) {
-          res.header("Access-Control-Allow-Origin", "*");
-          res.header("Access-Control-Allow-Credentials", "true");
-          res.header("Access-Control-Allow-Methods", "GET,HEAD,DELETE,OPTIONS,POST,PUT");
-          res.header("Access-Control-Allow-Headers", "Access-Control-Allow-Headers, Origin, Accept, Authorization, X-Requested-With, Content-Type, Access-Control-Request-Method, Access-Control-Request-Headers");
-          if (req.method == 'OPTIONS') {
-            res.status(200).end();
-          } else {
-            next();
-          }
-        });
-        */
         
         self.app.use(function(req, res, next) {
           res.header("Access-Control-Allow-Origin", "*");
@@ -141,9 +86,6 @@ var FacebookBotApp = function() {
 
         // Process application/json
         self.app.use(bodyParser.json());
-
-        
-        
     }
 
     /**
@@ -151,8 +93,8 @@ var FacebookBotApp = function() {
      *  the handlers.
      */
     self.initializeServer = function() {
-        self.createRoutes();
         console.log('creating routes...');
+        self.createRoutes();
     };
 
     /**
@@ -181,7 +123,7 @@ var FacebookBotApp = function() {
         });
     };
 
-};   /*  Sample Application.  */
+};   
 
 /**
  *  main():  Main code.
