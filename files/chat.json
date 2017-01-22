@@ -59,7 +59,7 @@
             "elements": [{
               "title": "Sports!",
               "subtitle": "Please choose any option to continue",
-              "image_url": "http://messengerdemo.parseapp.com/img/rift.png",
+              "image_url": "http://www.parislevallois.com/offres/file_inline_src/549/549_img_090215_093622.png",
               "buttons": [
                 {
                   "type": "postback",
@@ -250,7 +250,7 @@
               "image_url": "http://www.parislevallois.com/offres/file_inline_src/549/549_img_090215_093622.png",
               "item_url": "http://www.parislevallois.com/549_p_35596/calendrier-resultats.html",
               "subtitle":"Click to show scores",
-              "title":"Show SCores"
+              "title":"Show Scores"
             }],
             "template_type":"generic"
           },
