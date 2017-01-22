@@ -5,6 +5,7 @@
     "PAYLOAD_SHOW_RANKING": "PAYLOAD_SHOW_RANKING",
     "PAYLOAD_SHOW_BOOKING": "PAYLOAD_SHOW_BOOKING",
     "PAYLOAD_SHOW_SCORE": "PAYLOAD_SHOW_SCORE",
+    "PAYLOAD_SHOW_CALENDAR": "PAYLOAD_SHOW_CALENDAR",
     "PAYLOAD_SHOW_ADDRESS": "PAYLOAD_SHOW_ADDRESS"
   },
   "chat":[
@@ -37,7 +38,7 @@
                 },
                 {
                   "type": "postback",
-                  "title": "Weather",
+                  "title": "Address",
                   "payload": "PAYLOAD_SHOW_ADDRESS"
                 }
               ]
@@ -75,6 +76,11 @@
                   "type": "postback",
                   "title": "Score",
                   "payload": "PAYLOAD_SHOW_SCORE"
+                },
+                {
+                  "type": "postback",
+                  "title": "Calendar",
+                  "payload": "PAYLOAD_SHOW_CALENDAR"
                 }
               ]
             }]
@@ -120,7 +126,8 @@
     },
     {
       "keywords":[
-        "rank"
+        "rank",
+        "PAYLOAD_SHOW_RANKING"
       ],
       "response": {
         "attachment":{
@@ -146,7 +153,8 @@
     {
       "keywords":[
         "address", 
-        "adresse"
+        "adresse",
+        "PAYLOAD_SHOW_ADDRESS"
       ],
       "response": { 
         "text": "141 Rue Danton 92300 Levallois-Perret"
@@ -184,7 +192,8 @@
       "keywords":[
         "shop", 
         "buy",
-        "ticket"
+        "ticket",
+        "PAYLOAD_SHOW_BOOKING"
       ],
       "response": {
         "attachment":{
@@ -212,7 +221,8 @@
         "calendar", 
         "time",
         "timing",
-        "schedule"
+        "schedule",
+        "PAYLOAD_SHOW_CALENDAR"
       ],
       "response": {
         "attachment":{
@@ -238,7 +248,8 @@
     {
       "keywords":[
         "score", 
-        "result"
+        "result",
+        "PAYLOAD_SHOW_SCORE"
       ],
       "response": {
         "attachment":{

@@ -81,7 +81,7 @@ sendMessage = function (sender, text) {
     let messageData = { text: 'Hi'};
     chat.chat.forEach(function(element) {
         element.keywords.forEach(function(keyword) {
-            if(text.toLowerCase().includes(keyword)){
+            if(text.toLowerCase().includes(keyword.toLowerCase())){
                 messageData = element.response;        
             }
         }, this);
