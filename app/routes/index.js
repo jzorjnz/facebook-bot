@@ -1,3 +1,8 @@
+const express = require('express');
+const bodyParser = require('body-parser');
+const request = require('request');
+const app = express();
+
 module.exports = function(app){
 
   console.log('adding index API');
@@ -5,6 +10,9 @@ module.exports = function(app){
     var link = "http://i.imgur.com/kmbjB.png";
     res.send("<html><body><img src='" + link + "'></body></html>");
   });
-
+  app.get('/', function(req, res) {
+    res.setHeader('Content-Type', 'text/html');
+    res.send(cache.cache_get('index.html') );
+  });
   
 }

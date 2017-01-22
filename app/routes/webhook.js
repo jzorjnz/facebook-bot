@@ -1,3 +1,8 @@
+const express = require('express');
+const bodyParser = require('body-parser');
+const request = require('request');
+const app = express();
+
 const keys = require('../../config/keys.json');
 
 handleError = function(err) {

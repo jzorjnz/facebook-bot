@@ -107,10 +107,6 @@ var FacebookBotApp = function() {
     self.createRoutes = function() {
         require('./app/routes/index')(self.app);
         require('./app/routes/webhook')(self.app);
-        self.app.get('/', function(req, res) {
-            res.setHeader('Content-Type', 'text/html');
-            res.send(cache.cache_get('index.html') );
-        });
     }
 
     self.initializeApp = function() {
