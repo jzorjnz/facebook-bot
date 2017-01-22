@@ -22,6 +22,7 @@
             "elements": [{
               "title": "Welcome!",
               "subtitle": "Hi! I am facebook bot and I am here to assist you. Please choose any option to begin",
+              "image_url": "http://messengerdemo.parseapp.com/img/rift.png",
               "buttons": [
                 {
                   "type": "postback",
