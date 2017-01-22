@@ -151,7 +151,7 @@ var FacebookBotApp = function() {
      */
     self.initializeServer = function() {
         self.createRoutes();
-        
+        console.log('creating routes...');
     };
 
     /**
