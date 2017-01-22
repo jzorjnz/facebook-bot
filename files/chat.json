@@ -13,8 +13,7 @@
     },
     {
       "keywords":[
-        "rank", 
-        "score"
+        "rank"
       ],
       "response": {
         "attachment":{
@@ -58,15 +57,6 @@
     },
     {
       "keywords":[
-        "timing", 
-        "schedule"
-      ],
-      "response": {
-        "text": "Here's our schedule!"
-      }
-    },
-    {
-      "keywords":[
         "shop", 
         "buy",
         "ticket"
@@ -94,11 +84,55 @@
     },
     {
       "keywords":[
+        "calendar", 
+        "time",
+        "schedule"
+      ],
+      "response": {
+        "attachment":{
+          "payload":{
+            "elements":[{
+              "buttons": [{
+                "title":"Calendar",
+                "type":"web_url",
+                "url":"http://www.parislevallois.com/549_p_35568/calendrier-pro.html",
+                "webview_height_ratio":"full"
+              }],
+              "image_url": "http://www.parislevallois.com/offres/file_inline_src/549/549_img_090215_093622.png",
+              "item_url": "http://www.parislevallois.com/549_p_35568/calendrier-pro.html",
+              "subtitle":"Click to show calendar",
+              "title":"Show Calendar"
+            }],
+            "template_type":"generic"
+          },
+          "type":"template"
+        }
+      }
+    },
+    {
+      "keywords":[
         "score", 
         "result"
       ],
-      "response": { 
-        "text": "The score right now is 1-0"
+      "response": {
+        "attachment":{
+          "payload":{
+            "elements":[{
+              "buttons": [{
+                "title":"Score",
+                "type":"web_url",
+                "url":"http://www.parislevallois.com/549_p_35599/classement.html",
+                "webview_height_ratio":"full"
+              }],
+              "image_url": "http://www.parislevallois.com/offres/file_inline_src/549/549_img_090215_093622.png",
+              "item_url": "http://www.parislevallois.com/549_p_35599/classement.html",
+              "subtitle":"Click to show scores",
+              "title":"Show SCores"
+            }],
+            "template_type":"generic"
+          },
+          "type":"template"
+        }
       }
     }
   ]
