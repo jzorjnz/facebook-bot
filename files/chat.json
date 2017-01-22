@@ -73,11 +73,6 @@
                 },
                 {
                   "type": "postback",
-                  "title": "Score",
-                  "payload": "PAYLOAD_SHOW_SCORE"
-                },
-                {
-                  "type": "postback",
                   "title": "Calendar",
                   "payload": "PAYLOAD_SHOW_CALENDAR"
                 }
