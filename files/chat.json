@@ -21,15 +21,15 @@
           "payload":{
             "elements":[{
               "buttons": [{
-                "title":"Webview example",
+                "title":"Show rankings",
                 "type":"web_url",
                 "url":"http://www.parislevallois.com/549_p_35598/classement.html",
                 "webview_height_ratio":"compact"
               }],
-              "image_url": "http://www.example.com/image.png",
-              "item_url": "http://www.example.com",
-              "subtitle":"It's a TV!",
-              "title":"Some TV"
+              "image_url": "http://www.parislevallois.com/offres/file_inline_src/549/549_img_090215_093622.png",
+              "item_url": "http://www.parislevallois.com/549_p_35598/classement.html",
+              "subtitle":"Click to view live ranking",
+              "title":"Ranking"
             }],
             "template_type":"generic"
           },
