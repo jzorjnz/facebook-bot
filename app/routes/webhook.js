@@ -81,12 +81,11 @@ sendMessage = function (sender, text) {
     let messageData = { text: 'Hi'};
     chat.chat.forEach(function(element) {
         element.keywords.forEach(function(keyword) {
-            if(text.includes(keyword)){
+            if(text.toLowerCase().includes(keyword)){
                 messageData = element.response;        
             }
         }, this);
     }, this);
-    console.log('got response: ' + messageData);
     request({
         url: 'https://graph.facebook.com/v2.6/me/messages',
         qs: {access_token:keys.fb_token},

@@ -8,9 +8,31 @@
         "hello"
       ],
       "response": { 
-        "text": "Hi welcome to the chat bot!"
+        "text": "Hello, welcome to facebook bot. I'm here to help you. Let's get started! Use different keywords like Address, Menu, Timings, Schedule, Shop, Buy, Scores and Results to find more."
       }
     },
+    {
+      "keywords":[
+        "rank", 
+        "score"
+      ],
+      "response": {
+        "type":"web_url",
+        "url":"http://www.parislevallois.com/549_p_35598/classement.html",
+        "title":"Ranking",
+        "webview_height_ratio": "full"
+      }
+    },
+    {
+      "keywords":[
+        "address", 
+        "adresse"
+      ],
+      "response": { 
+        "text": "141 Rue Danton 92300 Levallois-Perret"
+      }
+    },
+    
     {
       "keywords":[
         "menus", 
