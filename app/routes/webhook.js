@@ -134,6 +134,7 @@ module.exports = function(app){
             if (event.postback) {
                 let text = event.message.text
                 sendMessage(sender, text);
+                console.log('postback received: ' + event.message.text);
                 //let text = JSON.stringify(event.postback)
                 //sendTextMessage(sender, "Postback received: " + text.substring(0, 200), keys.fb_token)
                 continue
