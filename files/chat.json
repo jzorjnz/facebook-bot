@@ -2,28 +2,78 @@
   "chat":[
     {
       "keywords":[
-        "start", "begin", "hi", "hello"],
-        "reply": "Hi welcome to the chat bot!"
+        "start", 
+        "begin", 
+        "hi", 
+        "hello"
+      ],
+      "response": { 
+        "text": "Hi welcome to the chat bot!"
+      }
     },
     {
       "keywords":[
-        "menus", "menu"],
-        "reply": "Here's the menu!"
+        "menus", 
+        "menu"
+      ],
+      "response": {
+        "text": "Here's the menu!"
+      }
     },
     {
       "keywords":[
-        "timing", "schedule"],
-        "reply": "Here's our schedule!"
+        "timing", 
+        "schedule"
+      ],
+      "response": {
+        "text": "Here's our schedule!"
+      }
     },
     {
       "keywords":[
-        "shop", "buy"],
-        "reply": "Welcome to the shop!"
+        "shop", 
+        "buy"
+      ],
+      "response": {
+        "attachment": {
+            "type": "template",
+            "payload": {
+                "template_type": "generic",
+                "elements": [{
+                    "title": "First card",
+                    "subtitle": "Element #1 of an hscroll",
+                    "image_url": "http://messengerdemo.parseapp.com/img/rift.png",
+                    "buttons": [{
+                        "type": "web_url",
+                        "url": "https://www.messenger.com",
+                        "title": "web url"
+                    }, {
+                        "type": "postback",
+                        "title": "Postback",
+                        "payload": "Payload for first element in a generic bubble"
+                    }]
+                }, {
+                    "title": "Second card",
+                    "subtitle": "Element #2 of an hscroll",
+                    "image_url": "http://messengerdemo.parseapp.com/img/gearvr.png",
+                    "buttons": [{
+                        "type": "postback",
+                        "title": "Postback",
+                        "payload": "Payload for second element in a generic bubble"
+                    }]
+                }]
+            }
+        }
+      }
     },
     {
       "keywords":[
-        "score", "result"],
-        "reply": "The score right now is 1-0"
+        "score", 
+        "result"
+      ],
+      "response": { 
+        "text": "The score right now is 1-0"
+      }
     }
   ]
 }

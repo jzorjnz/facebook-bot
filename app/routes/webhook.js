@@ -4,7 +4,7 @@ const request = require('request');
 const app = express();
 
 const keys = require('../../config/keys.json');
-
+const chat = require('../../files/chat');
 handleError = function(err) {
   console.log ("Got an error", err);
 }
@@ -26,8 +26,8 @@ sendGenericMessage = function (sender) {
                     }, {
                         "type": "postback",
                         "title": "Postback",
-                        "payload": "Payload for first element in a generic bubble",
-                    }],
+                        "payload": "Payload for first element in a generic bubble"
+                    }]
                 }, {
                     "title": "Second card",
                     "subtitle": "Element #2 of an hscroll",
@@ -35,8 +35,8 @@ sendGenericMessage = function (sender) {
                     "buttons": [{
                         "type": "postback",
                         "title": "Postback",
-                        "payload": "Payload for second element in a generic bubble",
-                    }],
+                        "payload": "Payload for second element in a generic bubble"
+                    }]
                 }]
             }
         }
@@ -77,6 +77,32 @@ sendTextMessage = function (sender, text) {
     });
 }
 
+sendMessage = function (sender, text) {
+    let messageData = { text: 'Hi'};
+    chat.chat.forEach(function(element) {
+        element.keywords.forEach(function(keyword) {
+            if(text.includes(keyword)){
+                messageData = element.response;        
+            }
+        }, this);
+    }, this);
+    console.log('got response: ' + messageData);
+    request({
+        url: 'https://graph.facebook.com/v2.6/me/messages',
+        qs: {access_token:keys.fb_token},
+        method: 'POST',
+        json: {
+            recipient: {id:sender},
+            message: messageData,
+        }
+    }, function(error, response, body) {
+        if (error) {
+            console.log('sendTextMessage | Error sending messages: ', error);
+        } else if (response.body.error) {
+            console.log('sendTextMessage | Error: ', response.body.error);
+        }
+    });
+}
 module.exports = function(app){
 
   // for Facebook verification
@@ -95,6 +121,8 @@ module.exports = function(app){
             let sender = event.sender.id
             if (event.message && event.message.text) {
                 let text = event.message.text
+                sendMessage(sender, text);
+                /*
                 if (text === 'Generic') {
                     sendGenericMessage(sender)
                     continue
@@ -102,6 +130,7 @@ module.exports = function(app){
                 else{
                     sendTextMessage(sender, "Text received, echo: " + text.substring(0, 200))
                 }
+                */
             }
             if (event.postback) {
                 let text = JSON.stringify(event.postback)
