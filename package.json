@@ -2,7 +2,7 @@
   "name": "fb-bot",
   "version": "1.0.0",
   "description": "facebook bot",
-  "main": "server.js",
+  "main": "index.js",
   "scripts": {
     "test": "testbot"
   },
