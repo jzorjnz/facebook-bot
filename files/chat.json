@@ -1,0 +1,29 @@
+{
+  "chat":[
+    {
+      "keywords":[
+        "start", "begin", "hi", "hello"],
+        "reply": "Hi welcome to the chat bot!"
+    },
+    {
+      "keywords":[
+        "menus", "menu"],
+        "reply": "Here's the menu!"
+    },
+    {
+      "keywords":[
+        "timing", "schedule"],
+        "reply": "Here's our schedule!"
+    },
+    {
+      "keywords":[
+        "shop", "buy"],
+        "reply": "Welcome to the shop!"
+    },
+    {
+      "keywords":[
+        "score", "result"],
+        "reply": "The score right now is 1-0"
+    }
+  ]
+}

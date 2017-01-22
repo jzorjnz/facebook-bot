@@ -5,7 +5,9 @@ const bodyParser = require('body-parser');
 const request = require('request');
 const app = express();
 
-const token = "EAARMCn5MhLkBAJyYRjlxgu6I3WEkpSKgZBBkeNJZCXZCEiKPOZAeU3DruWZBCDKlhDxNh0Rl5RDZCBIvLUx2OVU9SiM7ftbRSMuBaf1tohvEaRiVRBp3FWu0IrgKKdQYOZBPUOoZBefjuflUEM4vxrXR2px0Y7ZBL2OZB2emlawnRGfwZDZD";
+const keys = require('./config/keys.json');
+
+const token =  "EAARMCn5MhLkBAJyYRjlxgu6I3WEkpSKgZBBkeNJZCXZCEiKPOZAeU3DruWZBCDKlhDxNh0Rl5RDZCBIvLUx2OVU9SiM7ftbRSMuBaf1tohvEaRiVRBp3FWu0IrgKKdQYOZBPUOoZBefjuflUEM4vxrXR2px0Y7ZBL2OZB2emlawnRGfwZDZD";
 const tokenTest = 'dsf';
 
 function sendGenericMessage(sender) {
@@ -42,7 +44,7 @@ function sendGenericMessage(sender) {
     }
     request({
         url: 'https://graph.facebook.com/v2.6/me/messages',
-        qs: {access_token:token},
+        qs: {access_token:keys.fb_token},
         method: 'POST',
         json: {
             recipient: {id:sender},
@@ -61,7 +63,7 @@ function sendTextMessage(sender, text) {
     let messageData = { text:text };
     request({
         url: 'https://graph.facebook.com/v2.6/me/messages',
-        qs: {access_token:token},
+        qs: {access_token:keys.fb_token},
         method: 'POST',
         json: {
             recipient: {id:sender},
@@ -77,7 +79,7 @@ function sendTextMessage(sender, text) {
 }
 
 function sendIndexMessage() {
-    return 'Hello world, I am a chat bot. Token is: ' + tokenTest;
+    return 'Hello world, I am a chat bot. ';
 }
 
 app.set('port', (process.env.PORT || 5000));
@@ -112,11 +114,13 @@ app.post('/webhook/', function (req, res) {
                 sendGenericMessage(sender)
                 continue
             }
-            sendTextMessage(sender, "Text received, echo: " + text.substring(0, 200))
+            else{
+                sendTextMessage(sender, "Text received, echo: " + text.substring(0, 200))
+            }
         }
         if (event.postback) {
             let text = JSON.stringify(event.postback)
-            sendTextMessage(sender, "Postback received: "+text.substring(0, 200), token)
+            sendTextMessage(sender, "Postback received: " + text.substring(0, 200), keys.fb_token)
             continue
         }
     }
