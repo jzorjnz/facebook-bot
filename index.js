@@ -107,6 +107,10 @@ var FacebookBotApp = function() {
     self.createRoutes = function() {
         require('./app/routes/index')(self.app);
         require('./app/routes/webhook')(self.app);
+        self.app.get('/', function(req, res) {
+            res.setHeader('Content-Type', 'text/html');
+            res.send(cache.cache_get('index.html') );
+        });
     }
 
     self.initializeApp = function() {
@@ -126,7 +130,7 @@ var FacebookBotApp = function() {
           }
         });
         */
-        /*
+        
         self.app.use(function(req, res, next) {
           res.header("Access-Control-Allow-Origin", "*");
           res.header("Access-Control-Allow-Credentials", "true");
@@ -134,12 +138,12 @@ var FacebookBotApp = function() {
           res.header("Access-Control-Allow-Headers", "Access-Control-Allow-Headers, Origin, Accept, Authorization, X-Requested-With, Content-Type, Access-Control-Request-Method, Access-Control-Request-Headers");
           next();
         });
-        */
+        
         // Process application/x-www-form-urlencoded
-        app.use(bodyParser.urlencoded({extended: false}));
+        self.app.use(bodyParser.urlencoded({extended: false}));
 
         // Process application/json
-        app.use(bodyParser.json());
+        self.app.use(bodyParser.json());
 
         
         
@@ -174,7 +178,7 @@ var FacebookBotApp = function() {
      */
     self.start = function() {
         //  Start the app on the specific interface (and port).
-        app.listen(self.port, function() {
+        self.app.listen(self.port, function() {
             console.log('running on port', self.port);
         });
     };
