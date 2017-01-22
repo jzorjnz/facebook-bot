@@ -7,8 +7,6 @@ const app = express();
 
 const keys = require('./config/keys.json');
 
-const token =  "EAARMCn5MhLkBAJyYRjlxgu6I3WEkpSKgZBBkeNJZCXZCEiKPOZAeU3DruWZBCDKlhDxNh0Rl5RDZCBIvLUx2OVU9SiM7ftbRSMuBaf1tohvEaRiVRBp3FWu0IrgKKdQYOZBPUOoZBefjuflUEM4vxrXR2px0Y7ZBL2OZB2emlawnRGfwZDZD";
-const tokenTest = 'dsf';
 
 function sendGenericMessage(sender) {
     let messageData = {
@@ -97,7 +95,7 @@ app.get('/', function (req, res) {
 
 // for Facebook verification
 app.get('/webhook/', function (req, res) {
-    if (req.query['hub.verify_token'] === 'my_voice_is_my_password_verify_me') {
+    if (req.query['hub.verify_token'] === keys.verify_token) {
         res.send(req.query['hub.challenge']);
     }
     res.send('Error, wrong token');
