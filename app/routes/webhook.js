@@ -109,6 +109,8 @@ sendMessage = function (sender, text) {
             }
         }, this);
     }, this);
+    callSendAPI(messageData);
+    /*
     request({
         url: 'https://graph.facebook.com/v2.6/me/messages',
         qs: {access_token:keys.fb_token},
@@ -124,6 +126,7 @@ sendMessage = function (sender, text) {
             console.log('sendTextMessage | Error: ', response.body.error);
         }
     });
+    */
 }
 
 receivedMessage = function (event) {
