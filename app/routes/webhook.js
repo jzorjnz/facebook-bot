@@ -9,6 +9,29 @@ handleError = function(err) {
   console.log ("Got an error", err);
 }
 
+const weatherQueryStart = 'https://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20weather.forecast%20where%20woeid%20in%20(select%20woeid%20from%20geo.places(1)%20where%20text%3D%22';
+const weatherQueryEnd = '%22)&format=json&env=store%3A%2F%2Fdatatables.org%2Falltableswithkeys';
+
+callSendAPI = function(messageData) {
+  request({
+    uri: 'https://graph.facebook.com/v2.6/me/messages',
+    qs: { access_token: PAGE_ACCESS_TOKEN },
+    method: 'POST',
+    json: messageData
+}, function (error, response, body) {
+    if (!error && response.statusCode == 200) {
+      var recipientId = body.recipient_id;
+      var messageId = body.message_id;
+console.log("Successfully sent generic message with id %s to recipient %s", 
+        messageId, recipientId);
+    } else {
+      console.error("Unable to send message.");
+      //console.error(response);
+      console.error(error);
+    }
+  });  
+}
+
 sendGenericMessage = function (sender) {
     let messageData = {
         "attachment": {
@@ -102,6 +125,54 @@ sendMessage = function (sender, text) {
         }
     });
 }
+
+receivedMessage = function (event) {
+    console.log('incoming event', event);
+    var senderID = event.sender.id;
+    var recipientID = event.recipient.id;
+    var timeOfMessage = event.timestamp;
+    var message = event.message;
+    console.log(JSON.stringify(message));
+    var messageId = message.mid;
+    var messageText = message.text;
+    var messageAttachments = message.attachments;
+    if (messageText) {
+        sendTextMessage(senderID, messageText);
+    }
+}
+
+getWeather = function (callback, location) {
+  var weatherEndpoint = 'https://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20weather.forecast%20where%20woeid%20in%20(select%20woeid%20from%20geo.places(1)%20where%20text%3D%22' + location + '%22)&format=json&env=store%3A%2F%2Fdatatables.org%2Falltableswithkeys';
+  console.log(weatherEndpoint);
+  request({
+    url: weatherEndpoint,
+    json: true
+  }, function(error, response, body) {
+    try {
+      var condition = body.query.results.channel.item.condition;
+      callback("Today is " + condition.temp + " and " + condition.text + " in " + location);
+    } catch(err) {
+      console.error('error caught', err);
+      callback("There was an error");
+    }
+  });
+}
+
+sendTextMessage = function (recipientId, messageText) {
+    console.log('incoming message text', messageText);
+    getWeather(function(message) {
+        var messageData = {
+            recipient: {
+            id: recipientId
+            },
+            message: {
+            text: message
+            }
+        };
+        callSendAPI(messageData);
+    }, messageText);
+}
+
 module.exports = function(app){
 
   // for Facebook verification
@@ -114,32 +185,58 @@ module.exports = function(app){
     });
 
     app.post('/webhook/', function (req, res) {
-        let messaging_events = req.body.entry[0].messaging
-        for (let i = 0; i < messaging_events.length; i++) {
-            let event = req.body.entry[0].messaging[i]
-            let sender = event.sender.id
-            if (event.message && event.message.text) {
-                let text = event.message.text
-                sendMessage(sender, text);
-                /*
-                if (text === 'Generic') {
-                    sendGenericMessage(sender)
+        
+        var data = req.body;
+        // Make sure this is a page subscription
+        if (data.object === 'page') {
+        // Iterate over each entry - there may be multiple if batched
+            data.entry.forEach(function(entry) {
+                var pageID = entry.id;
+                var timeOfEvent = entry.time;
+            // Iterate over each messaging event
+                entry.messaging.forEach(function(event) {
+                    if (event.message) {
+                        receivedMessage(event);
+                    } else {
+                        console.log("Webhook received unknown event: ", event);
+                    }
+                });
+            });
+        // Assume all went well.
+            //
+            // You must send back a 200, within 20 seconds, to let us know
+            // you've successfully received the callback. Otherwise, the request
+            // will time out and we will keep trying to resend.
+            res.sendStatus(200);
+        }
+        else{
+            let messaging_events = req.body.entry[0].messaging
+            for (let i = 0; i < messaging_events.length; i++) {
+                let event = req.body.entry[0].messaging[i]
+                let sender = event.sender.id
+                if (event.message && event.message.text) {
+                    let text = event.message.text
+                    sendMessage(sender, text);
+                    /*
+                    if (text === 'Generic') {
+                        sendGenericMessage(sender)
+                        continue
+                    }
+                    else{
+                        sendTextMessage(sender, "Text received, echo: " + text.substring(0, 200))
+                    }
+                    */
+                }
+                if (event.postback) {
+                    let text = JSON.stringify(event.postback)
+                    sendMessage(sender, text);
+                    console.log('postback received: ' + text);
+                    //let text = JSON.stringify(event.postback)
+                    //sendTextMessage(sender, "Postback received: " + text.substring(0, 200), keys.fb_token)
                     continue
                 }
-                else{
-                    sendTextMessage(sender, "Text received, echo: " + text.substring(0, 200))
-                }
-                */
             }
-            if (event.postback) {
-                let text = JSON.stringify(event.postback)
-                sendMessage(sender, text);
-                console.log('postback received: ' + text);
-                //let text = JSON.stringify(event.postback)
-                //sendTextMessage(sender, "Postback received: " + text.substring(0, 200), keys.fb_token)
-                continue
-            }
+            res.sendStatus(200);
         }
-        res.sendStatus(200);
     });
 }

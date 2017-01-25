@@ -166,7 +166,9 @@
     },
     {
       "keywords":[
-        "weather", 
+        "weather",
+        "weath",
+        "temp", 
         "PAYLOAD_SHOW_WEATHER"
       ],
       "response": { 
