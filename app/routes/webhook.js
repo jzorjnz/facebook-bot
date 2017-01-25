@@ -162,9 +162,7 @@ getWeather = function (callback, location) {
         if(body.current && body.location){
             //var condition = body.query.results.channel.item.condition;
             //var result = body.current;
-            callback({ 
-                text: "Today is " + body.current.temp_c + " and " + body.current.condition.text + " in " + body.location.name
-                });
+            callback("Today is " + body.current.temp_c + " and " + body.current.condition.text + " in " + body.location.name);
         }
         else{
             console.error('There was an error calling yahoo Weather API');
