@@ -12,12 +12,15 @@ handleError = function(err) {
 const weatherQueryStart = 'https://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20weather.forecast%20where%20woeid%20in%20(select%20woeid%20from%20geo.places(1)%20where%20text%3D%22';
 const weatherQueryEnd = '%22)&format=json&env=store%3A%2F%2Fdatatables.org%2Falltableswithkeys';
 
-callSendAPI = function(messageData) {
+callSendAPI = function(senderID, messageData) {
   request({
     uri: 'https://graph.facebook.com/v2.6/me/messages',
     qs: { access_token: keys.access_token },
     method: 'POST',
-    json: messageData
+    json: {
+        recipient: {id:senderID},
+        message: messageData,
+    }
 }, function (error, response, body) {
     if (!error && response.statusCode == 200) {
       var recipientId = body.recipient_id;
@@ -81,6 +84,7 @@ sendGenericMessage = function (sender) {
     })
 }
 
+/*
 sendTextMessage = function (sender, text) {
     let messageData = { text:text };
     request({
@@ -99,6 +103,7 @@ sendTextMessage = function (sender, text) {
         }
     });
 }
+*/
 
 sendMessage = function (sender, text) {
     let messageData = { text: 'Hi'};
@@ -109,7 +114,7 @@ sendMessage = function (sender, text) {
             }
         }, this);
     }, this);
-    callSendAPI(messageData);
+    callSendAPI(sender, messageData);
     /*
     request({
         url: 'https://graph.facebook.com/v2.6/me/messages',
@@ -175,15 +180,17 @@ getWeather = function (callback, location) {
 sendTextMessage = function (recipientId, messageText) {
     console.log('incoming message text', messageText);
     getWeather(function(message) {
+        /*
         var messageData = {
             recipient: {
             id: recipientId
             },
-            message: {
-            text: message
-            }
+            message: 
         };
-        callSendAPI(messageData);
+        */
+        callSendAPI(recipientId, {
+            text: message
+            });
     }, messageText);
 }
 
