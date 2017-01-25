@@ -146,14 +146,23 @@ receivedMessage = function (event) {
 
 getWeather = function (callback, location) {
   var weatherEndpoint = 'https://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20weather.forecast%20where%20woeid%20in%20(select%20woeid%20from%20geo.places(1)%20where%20text%3D%22' + location + '%22)&format=json&env=store%3A%2F%2Fdatatables.org%2Falltableswithkeys';
-  console.log(weatherEndpoint);
+  var currentWeatherEndPoint = 'https://api.apixu.com/v1/current.json?key=96d9ed80ad7f44b386a152505172201&q=' + location;
+
+  console.log(currentWeatherEndPoint);
   request({
-    url: weatherEndpoint,
+    url: currentWeatherEndPoint,
     json: true
   }, function(error, response, body) {
     try {
-      var condition = body.query.results.channel.item.condition;
-      callback("Today is " + condition.temp + " and " + condition.text + " in " + location);
+        if(body.query.results){
+            //var condition = body.query.results.channel.item.condition;
+            //var result = body.current;
+            callback("Today is " + body.current.temp_c + " and " + body.current.condition.text + " in " + body.location.name);
+        }
+        else{
+            console.error('There was an error calling yahoo Weather API');
+            callback("There was an error calling yahoo Weather API");
+        }
     } catch(err) {
       console.error('error caught', err);
       callback("There was an error");
