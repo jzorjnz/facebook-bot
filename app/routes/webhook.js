@@ -160,8 +160,8 @@ getWeather = function (callback, location) {
             callback("Today is " + body.current.temp_c + " °C (" + body.current.temp_f + " °F) and condition is " + body.current.condition.text + " in " + body.location.name);
         }
         else{
-            console.error('There was an error calling yahoo Weather API');
-            callback("There was an error calling yahoo Weather API");
+            console.error('There was an error calling Weather API');
+            callback("There was an error getting Weather. Try writing location e.g. Paris");
         }
     } catch(err) {
       console.error('error caught', err);
