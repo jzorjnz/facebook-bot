@@ -14,25 +14,20 @@ const weatherQueryEnd = '%22)&format=json&env=store%3A%2F%2Fdatatables.org%2Fall
 
 callSendAPI = function(senderID, messageData) {
   request({
-    uri: 'https://graph.facebook.com/v2.6/me/messages',
-    qs: { access_token: keys.fb_token },
-    method: 'POST',
-    json: {
-        recipient: {id:senderID},
-        message: {text: messageData},
-    }
-}, function (error, response, body) {
-    if (!error && response.statusCode == 200) {
-      var recipientId = body.recipient_id;
-      var messageId = body.message_id;
-        console.log("Successfully sent generic message with id %s to recipient %s", 
-        messageId, recipientId);
-    } else {
-      console.error("Unable to send message.");
-      //console.error(response);
-      console.error(error);
-    }
-  });  
+        url: 'https://graph.facebook.com/v2.6/me/messages',
+        qs: {access_token:keys.fb_token},
+        method: 'POST',
+        json: {
+            recipient: {id:senderID},
+            message: messageData,
+        }
+    }, function(error, response, body) {
+        if (error) {
+            console.log('Error sending messages: ', error)
+        } else if (response.body.error) {
+            console.log('Error: ', response.body.error)
+        }
+    });  
 }
 
 sendGenericMessage = function (sender) {
@@ -186,6 +181,7 @@ sendTextMessage = function (recipientId, messageText) {
             message: 
         };
         */
+        console.log('calling sendAPI with recipientID: ' + recipientId + ' and text: ' + message);
         callSendAPI(recipientId, {
             text: message
             });
