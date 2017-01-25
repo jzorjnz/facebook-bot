@@ -154,7 +154,7 @@ getWeather = function (callback, location) {
     json: true
   }, function(error, response, body) {
     try {
-        if(body.query.results){
+        if(body.current && body.location){
             //var condition = body.query.results.channel.item.condition;
             //var result = body.current;
             callback("Today is " + body.current.temp_c + " and " + body.current.condition.text + " in " + body.location.name);
