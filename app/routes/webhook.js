@@ -15,7 +15,7 @@ const weatherQueryEnd = '%22)&format=json&env=store%3A%2F%2Fdatatables.org%2Fall
 callSendAPI = function(messageData) {
   request({
     uri: 'https://graph.facebook.com/v2.6/me/messages',
-    qs: { access_token: PAGE_ACCESS_TOKEN },
+    qs: { access_token: keys.access_token },
     method: 'POST',
     json: messageData
 }, function (error, response, body) {
