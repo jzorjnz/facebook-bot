@@ -15,11 +15,11 @@ const weatherQueryEnd = '%22)&format=json&env=store%3A%2F%2Fdatatables.org%2Fall
 callSendAPI = function(senderID, messageData) {
   request({
     uri: 'https://graph.facebook.com/v2.6/me/messages',
-    qs: { access_token: keys.access_token },
+    qs: { access_token: keys.fb_token },
     method: 'POST',
     json: {
         recipient: {id:senderID},
-        message: {text: 'Hi this is text!'},
+        message: {text: messageData},
     }
 }, function (error, response, body) {
     if (!error && response.statusCode == 200) {
@@ -187,7 +187,7 @@ sendTextMessage = function (recipientId, messageText) {
         };
         */
         callSendAPI(recipientId, {
-            text: 'Hi'
+            text: message
             });
     }, messageText);
 }
