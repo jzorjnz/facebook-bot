@@ -143,10 +143,12 @@ receivedMessage = function (event) {
         var messageId = message.mid;
         text = message.text;
         var messageAttachments = message.attachments;
+        res.sendStatus(200);
     }
     else if (event.postback) {
         text = JSON.stringify(event.postback)
         console.log('postback received: ' + text);
+        res.sendStatus(200);
     }
         
 
@@ -237,7 +239,7 @@ module.exports = function(app){
             // You must send back a 200, within 20 seconds, to let us know
             // you've successfully received the callback. Otherwise, the request
             // will time out and we will keep trying to resend.
-            res.sendStatus(200);
+            
         }
         /*
         else{
