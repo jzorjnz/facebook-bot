@@ -109,12 +109,12 @@ sendMessage = function (sender, text) {
             if(text.toLowerCase().includes(keyword.toLowerCase())){
                 messageData = element.response;        
             }
-            /*
+            
             if(text.toLowerCase().includes('weather')){
                 console.log('setting state to weather...');
                 usersState[sender] = 'STATE_WEATHER';
             }
-            */
+            
         }, this);
     }, this);
     callSendAPI(sender, messageData);
