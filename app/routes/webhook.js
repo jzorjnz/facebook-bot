@@ -153,7 +153,6 @@ receivedMessage = function (event, res) {
                         text, 
                         function(message) {
                             callSendAPI(senderID, {text: message});
-                            sendMessage(senderID, 'welcome');
                         }
             );
 
@@ -191,6 +190,7 @@ getWeather = function (senderID, location, callback) {
             //var result = body.current;
             usersState[senderID] = null;
             callback("Today is " + body.current.temp_c + " °C (" + body.current.temp_f + " °F) and condition is " + body.current.condition.text + " in " + body.location.name);
+            sendMessage(senderID, 'welcome');    
         }
         else{
             console.error('There was an error calling Weather API');
