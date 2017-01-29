@@ -211,12 +211,12 @@ module.exports = function(app){
         // Make sure this is a page subscription
         if (data.object === 'page') {
         // Iterate over each entry - there may be multiple if batched
-            data.entry.forEach(function(entry) {
-                var pageID = entry.id;
+            entry = data.entry[0];
+            var pageID = entry.id;
                 var timeOfEvent = entry.time;
-            // Iterate over each messaging event
+                // Iterate over each messaging event
                 entry.messaging.forEach(function(event) {
-                    //receivedMessage(event);
+                    receivedMessage(event);
                     /*
                     if (event.message) {
                         receivedMessage(event);
@@ -225,7 +225,11 @@ module.exports = function(app){
                     }
                     */
                 });
+                /*
+            data.entry.forEach(function(entry) {
+                
             });
+            */
         // Assume all went well.
             //
             // You must send back a 200, within 20 seconds, to let us know
