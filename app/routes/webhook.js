@@ -167,12 +167,9 @@ receivedMessage = function (event, res) {
         return;
     }  
     if(usersState[senderID] === 'STATE_WEATHER'){
-        getWeather(function(message) {
-            callSendAPI(senderID, {
-                text: message
-                });
-            },
-            text
+        getWeather( senderID, 
+                    text, 
+                    function(message) {callSendAPI(senderID, {text: message});}
         );
     }
     else{
@@ -187,7 +184,7 @@ receivedMessage = function (event, res) {
     res.sendStatus(200);
 }
 
-getWeather = function (callback, location) {
+getWeather = function (senderID, location, callback) {
   var weatherEndpoint = 'https://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20weather.forecast%20where%20woeid%20in%20(select%20woeid%20from%20geo.places(1)%20where%20text%3D%22' + location + '%22)&format=json&env=store%3A%2F%2Fdatatables.org%2Falltableswithkeys';
   var currentWeatherEndPoint = 'https://api.apixu.com/v1/current.json?key=96d9ed80ad7f44b386a152505172201&q=' + location;
 
