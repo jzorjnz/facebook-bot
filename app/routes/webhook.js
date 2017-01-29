@@ -109,9 +109,12 @@ sendMessage = function (sender, text) {
             if(text.toLowerCase().includes(keyword.toLowerCase())){
                 messageData = element.response;        
             }
+            /*
             if(text.toLowerCase().includes('weather')){
+                console.log('setting state to weather...');
                 usersState[sender] = 'STATE_WEATHER';
             }
+            */
         }, this);
     }, this);
     callSendAPI(sender, messageData);
@@ -153,6 +156,7 @@ receivedMessage = function (event, res) {
     }
     else{
         // it was probably some other info that we have nothing to do at this point
+        console.log('returning without doing anything...');
         return;
     }   
 
