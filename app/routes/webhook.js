@@ -234,15 +234,17 @@ module.exports = function(app){
                 var timeOfEvent = entry.time;
                 // Iterate over each messaging event
                 entry.messaging.forEach(function(event) {
-                    console.log('got another entry!');
-                    receivedMessage(event, res);
-                    /*
-                    if (event.message) {
-                        receivedMessage(event);
-                    } else {
-                        console.log("Webhook received unknown event: ", event);
+                    if(event.message){
+                        console.log('got another entry!');
+                        receivedMessage(event, res);
+                        /*
+                        if (event.message) {
+                            receivedMessage(event);
+                        } else {
+                            console.log("Webhook received unknown event: ", event);
+                        }
+                        */
                     }
-                    */
                 });
             });
             
