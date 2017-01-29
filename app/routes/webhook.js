@@ -242,20 +242,15 @@ module.exports = function(app){
                 // Iterate over each messaging event
                 entry.messaging.forEach(function(event) {
                     if(event.message){
-                        if(event.message.is_echo){
-                            console.log('it is a echo!');
+                        console.log('got another entry!');
+                        receivedMessage(event, res);
+                        /*
+                        if (event.message) {
+                            receivedMessage(event);
+                        } else {
+                            console.log("Webhook received unknown event: ", event);
                         }
-                        else{
-                            console.log('got another entry!');
-                            receivedMessage(event, res);
-                            /*
-                            if (event.message) {
-                                receivedMessage(event);
-                            } else {
-                                console.log("Webhook received unknown event: ", event);
-                            }
-                            */
-                        }
+                        */
                     }
                 });
             });
