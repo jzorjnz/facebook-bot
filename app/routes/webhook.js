@@ -109,12 +109,10 @@ sendMessage = function (sender, text) {
             if(text.toLowerCase().includes(keyword.toLowerCase())){
                 messageData = element.response;
             }
-            
             if(text.toLowerCase().includes('weather')){
                 console.log('setting state to weather...');
                 usersState[sender] = 'STATE_WEATHER';
             }
-            
         }, this);
     }, this);
     callSendAPI(sender, messageData);
@@ -166,41 +164,37 @@ receivedMessage = function (event, res) {
             }
         }
     }
-    
-    // Assume all went well.
-    //
-    // You must send back a 200, within 20 seconds, to let us know
-    // you've successfully received the callback. Otherwise, the request
-    // will time out and we will keep trying to resend.
-    res.sendStatus(200);
 }
 
 getWeather = function (senderID, location, callback) {
-  var weatherEndpoint = 'https://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20weather.forecast%20where%20woeid%20in%20(select%20woeid%20from%20geo.places(1)%20where%20text%3D%22' + location + '%22)&format=json&env=store%3A%2F%2Fdatatables.org%2Falltableswithkeys';
-  var currentWeatherEndPoint = 'https://api.apixu.com/v1/current.json?key=96d9ed80ad7f44b386a152505172201&q=' + location;
+    var weatherEndpoint = 'https://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20weather.forecast%20where%20woeid%20in%20(select%20woeid%20from%20geo.places(1)%20where%20text%3D%22' + location + '%22)&format=json&env=store%3A%2F%2Fdatatables.org%2Falltableswithkeys';
+    var currentWeatherEndPoint = 'https://api.apixu.com/v1/current.json?key=96d9ed80ad7f44b386a152505172201&q=' + location;
 
-  console.log(currentWeatherEndPoint);
-  request({
-    url: currentWeatherEndPoint,
-    json: true
-  }, function(error, response, body) {
-    try {
-        if(body.current && body.location){
-            //var condition = body.query.results.channel.item.condition;
-            //var result = body.current;
-            usersState[senderID] = null;
-            sendMessage(senderID, 'welcome');    
-            callback("Today is " + body.current.temp_c + " °C (" + body.current.temp_f + " °F) and condition is " + body.current.condition.text + " in " + body.location.name);
+    console.log(currentWeatherEndPoint);
+    request(
+        {
+            url: currentWeatherEndPoint,
+            json: true
+        },
+        function(error, response, body) {
+            try {
+                if(body.current && body.location){
+                    //var condition = body.query.results.channel.item.condition;
+                    //var result = body.current;
+                    usersState[senderID] = null;
+                    callback("Today is " + body.current.temp_c + " °C (" + body.current.temp_f + " °F) and condition is " + body.current.condition.text + " in " + body.location.name);
+                    sendMessage(senderID, 'welcome');    
+                }
+                else{
+                    console.error('There was an error calling Weather API');
+                    callback("There was an error getting Weather. Try again writing location e.g. Paris");
+                }
+            } catch(err) {
+                console.error('error caught', err);
+                callback("There was an error");
+            }
         }
-        else{
-            console.error('There was an error calling Weather API');
-            callback("There was an error getting Weather. Try again writing location e.g. Paris");
-        }
-    } catch(err) {
-      console.error('error caught', err);
-      callback("There was an error");
-    }
-  });
+    );
 }
 
 module.exports = function(app){
@@ -216,11 +210,11 @@ module.exports = function(app){
 
     app.post('/webhook/', function (req, res) {
         
+
         var data = req.body;
         // Make sure this is a page subscription
         if (data.object === 'page') {
         // Iterate over each entry - there may be multiple if batched
-            
             data.entry.forEach(function(entry) {
                 var pageID = entry.id;
                 var timeOfEvent = entry.time;
@@ -230,41 +224,12 @@ module.exports = function(app){
                     receivedMessage(event, res);
                 });
             });
-            
-            
-                
-          
         }
-        /*
-        else{
-            let messaging_events = req.body.entry[0].messaging
-            for (let i = 0; i < messaging_events.length; i++) {
-                let event = req.body.entry[0].messaging[i]
-                let sender = event.sender.id
-                if (event.message && event.message.text) {
-                    let text = event.message.text
-                    sendMessage(sender, text);
-                    /*
-                    if (text === 'Generic') {
-                        sendGenericMessage(sender)
-                        continue
-                    }
-                    else{
-                        sendTextMessage(sender, "Text received, echo: " + text.substring(0, 200))
-                    }
-                    //* /
-                }
-                if (event.postback) {
-                    let text = JSON.stringify(event.postback)
-                    sendMessage(sender, text);
-                    console.log('postback received: ' + text);
-                    //let text = JSON.stringify(event.postback)
-                    //sendTextMessage(sender, "Postback received: " + text.substring(0, 200), keys.fb_token)
-                    continue
-                }
-            }
-            res.sendStatus(200);
-        }
-        */
+        // Assume all went well.
+        //
+        // You must send back a 200, within 20 seconds, to let us know
+        // you've successfully received the callback. Otherwise, the request
+        // will time out and we will keep trying to resend.
+        res.sendStatus(200);
     });
 }
