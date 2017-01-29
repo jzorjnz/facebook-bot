@@ -216,7 +216,7 @@ module.exports = function(app){
                 
             });
             */
-            entry = data.entry[0];
+            var entry = data.entry[0];
             var pageID = entry.id;
             var timeOfEvent = entry.time;
             // Iterate over each messaging event
