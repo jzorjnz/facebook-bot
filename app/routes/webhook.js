@@ -143,22 +143,29 @@ receivedMessage = function (event, res) {
     var recipientID = event.recipient.id;
     var timeOfMessage = event.timestamp;
     var text = '';
-    if (event.message && event.message.text) {
-        var message = event.message;
-        console.log('event.message = ' + JSON.stringify(message));
-        var messageId = message.mid;
-        text = message.text;
-        var messageAttachments = message.attachments;
-    }
-    else if (event.postback) {
-        text = JSON.stringify(event.postback)
-        console.log('postback received: ' + text);
+    if(event.message.is_echo){
+        console.log('it is a echo!');
+        res.sendStatus(200);
     }
     else{
-        // it was probably some other info that we have nothing to do at this point
-        console.log('returning without doing anything...');
-        return;
-    }   
+        if (event.message && event.message.text) {
+            var message = event.message;
+            console.log('event.message = ' + JSON.stringify(message));
+            var messageId = message.mid;
+            text = message.text;
+            var messageAttachments = message.attachments;
+        }
+        else if (event.postback) {
+            text = JSON.stringify(event.postback)
+            console.log('postback received: ' + text);
+        }
+        else{
+            // it was probably some other info that we have nothing to do at this point
+            console.log('returning without doing anything...');
+            return;
+        }  
+    }        
+     
 
     if(usersState[senderID] === 'STATE_WEATHER'){
         usersState[senderID] = null;
