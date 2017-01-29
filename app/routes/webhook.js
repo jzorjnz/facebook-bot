@@ -9,6 +9,8 @@ handleError = function(err) {
   console.log ("Got an error", err);
 }
 
+var usersState = {};
+
 const weatherQueryStart = 'https://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20weather.forecast%20where%20woeid%20in%20(select%20woeid%20from%20geo.places(1)%20where%20text%3D%22';
 const weatherQueryEnd = '%22)&format=json&env=store%3A%2F%2Fdatatables.org%2Falltableswithkeys';
 
@@ -134,13 +136,25 @@ receivedMessage = function (event) {
     var senderID = event.sender.id;
     var recipientID = event.recipient.id;
     var timeOfMessage = event.timestamp;
-    var message = event.message;
-    console.log(JSON.stringify(message));
-    var messageId = message.mid;
-    var messageText = message.text;
-    var messageAttachments = message.attachments;
-    if (messageText) {
-        sendTextMessage(senderID, messageText);
+    var text = '';
+    if (event.message && event.message.text) {
+        var message = event.message;
+        console.log(JSON.stringify(message));
+        var messageId = message.mid;
+        text = message.text;
+        var messageAttachments = message.attachments;
+    }
+    else if (event.postback) {
+        text = JSON.stringify(event.postback)
+        console.log('postback received: ' + text);
+    }
+        
+
+    if(usersState[senderID] === 'STATE_WEATHER'){
+        sendTextMessage(senderID, text);
+    }
+    else{
+        sendMessage(senderID, text);
     }
 }
 
