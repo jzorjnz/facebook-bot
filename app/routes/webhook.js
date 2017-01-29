@@ -151,8 +151,12 @@ receivedMessage = function (event, res) {
         if(usersState[senderID] === 'STATE_WEATHER'){
             getWeather( senderID, 
                         text, 
-                        function(message) {callSendAPI(senderID, {text: message});}
+                        function(message) {
+                            callSendAPI(senderID, {text: message});
+                            sendMessage(senderID, 'welcome');
+                        }
             );
+
         }
         else{
             if (text === 'Generic') {
