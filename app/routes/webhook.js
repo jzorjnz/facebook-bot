@@ -103,11 +103,11 @@ sendTextMessage = function (sender, text) {
 */
 
 sendMessage = function (sender, text) {
-    let messageData = { text: 'Hi'};
+    let messageData = { text: 'Hello! :D :) Please choose an activity from the side menu! :)'};
     chat.chat.forEach(function(element) {
         element.keywords.forEach(function(keyword) {
             if(text.toLowerCase().includes(keyword.toLowerCase())){
-                messageData = element.response;        
+                messageData = element.response;
             }
             
             if(text.toLowerCase().includes('weather')){
@@ -118,23 +118,6 @@ sendMessage = function (sender, text) {
         }, this);
     }, this);
     callSendAPI(sender, messageData);
-    /*
-    request({
-        url: 'https://graph.facebook.com/v2.6/me/messages',
-        qs: {access_token:keys.fb_token},
-        method: 'POST',
-        json: {
-            recipient: {id:sender},
-            message: messageData,
-        }
-    }, function(error, response, body) {
-        if (error) {
-            console.log('sendTextMessage | Error sending messages: ', error);
-        } else if (response.body.error) {
-            console.log('sendTextMessage | Error: ', response.body.error);
-        }
-    });
-    */
 }
 
 receivedMessage = function (event, res) {
@@ -142,7 +125,7 @@ receivedMessage = function (event, res) {
     var senderID = event.sender.id;
     var recipientID = event.recipient.id;
     var timeOfMessage = event.timestamp;
-    var text = '';
+    var text = null;
     
     if (event.message && event.message.text && !event.message.is_echo) {
         var message = event.message;
@@ -163,19 +146,26 @@ receivedMessage = function (event, res) {
         else{
             console.log('returning without doing anything...');
         }
-        res.sendStatus(200);
-        return;
     }  
-    if(usersState[senderID] === 'STATE_WEATHER'){
-        getWeather( senderID, 
-                    text, 
-                    function(message) {callSendAPI(senderID, {text: message});}
-        );
+    if(text){
+        if(usersState[senderID] === 'STATE_WEATHER'){
+            getWeather( senderID, 
+                        text, 
+                        function(message) {callSendAPI(senderID, {text: message});}
+            );
+        }
+        else{
+            if (text === 'Generic') {
+                sendGenericMessage(sender);
+            }
+            else{
+                sendMessage(senderID, text);
+            }
+            
+            sendMessage(senderID, text);
+        }
     }
-    else{
-        console.log(' calling send message with text: ' + text);
-        sendMessage(senderID, text);
-    }
+    
     // Assume all went well.
     //
     // You must send back a 200, within 20 seconds, to let us know
@@ -209,11 +199,6 @@ getWeather = function (senderID, location, callback) {
       callback("There was an error");
     }
   });
-}
-
-sendTextMessage = function (recipientId, messageText) {
-    console.log('incoming message text', messageText);
-    
 }
 
 module.exports = function(app){
