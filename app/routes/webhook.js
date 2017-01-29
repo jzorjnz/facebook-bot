@@ -156,13 +156,11 @@ receivedMessage = function (event, res) {
         }
         else{
             if (text === 'Generic') {
-                sendGenericMessage(sender);
+                sendGenericMessage(senderID);
             }
             else{
                 sendMessage(senderID, text);
             }
-            
-            sendMessage(senderID, text);
         }
     }
     
