@@ -151,7 +151,7 @@
         "PAYLOAD_SHOW_ADDRESS"
       ],
       "response": { 
-        "text": "141 Rue Danton 92300 Levallois-Perret"
+        "text": "Address: 141 Rue Danton 92300 Levallois-Perret"
       }
     },
     
@@ -172,7 +172,7 @@
         "PAYLOAD_SHOW_WEATHER"
       ],
       "response": { 
-        "text": "Weather is cool!"
+        "text": "Please enter you location to find out the weather."
       }
     },
     {

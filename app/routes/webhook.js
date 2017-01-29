@@ -138,12 +138,11 @@ sendMessage = function (sender, text) {
 }
 
 receivedMessage = function (event, res) {
-    console.log('incoming event', event);
+    //console.log('incoming event', event);
     var senderID = event.sender.id;
     var recipientID = event.recipient.id;
     var timeOfMessage = event.timestamp;
     var text = '';
-    
     
     if (event.message && event.message.text && !event.message.is_echo) {
         var message = event.message;
@@ -168,8 +167,13 @@ receivedMessage = function (event, res) {
         return;
     }  
     if(usersState[senderID] === 'STATE_WEATHER'){
-        usersState[senderID] = null;
-        sendTextMessage(senderID, text);
+        getWeather(function(message) {
+            callSendAPI(senderID, {
+                text: message
+                });
+            },
+            text
+        );
     }
     else{
         console.log(' calling send message with text: ' + text);
@@ -196,11 +200,12 @@ getWeather = function (callback, location) {
         if(body.current && body.location){
             //var condition = body.query.results.channel.item.condition;
             //var result = body.current;
+            usersState[senderID] = null;
             callback("Today is " + body.current.temp_c + " °C (" + body.current.temp_f + " °F) and condition is " + body.current.condition.text + " in " + body.location.name);
         }
         else{
             console.error('There was an error calling Weather API');
-            callback("There was an error getting Weather. Try writing location e.g. Paris");
+            callback("There was an error getting Weather. Try again writing location e.g. Paris");
         }
     } catch(err) {
       console.error('error caught', err);
@@ -211,11 +216,7 @@ getWeather = function (callback, location) {
 
 sendTextMessage = function (recipientId, messageText) {
     console.log('incoming message text', messageText);
-    getWeather(function(message) {
-        callSendAPI(recipientId, {
-            text: message
-            });
-    }, messageText);
+    
 }
 
 module.exports = function(app){
