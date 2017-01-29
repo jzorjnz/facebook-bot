@@ -211,25 +211,27 @@ module.exports = function(app){
         // Make sure this is a page subscription
         if (data.object === 'page') {
         // Iterate over each entry - there may be multiple if batched
-            entry = data.entry[0];
-            var pageID = entry.id;
-                var timeOfEvent = entry.time;
-                // Iterate over each messaging event
-                entry.messaging.forEach(function(event) {
-                    receivedMessage(event);
-                    /*
-                    if (event.message) {
-                        receivedMessage(event);
-                    } else {
-                        console.log("Webhook received unknown event: ", event);
-                    }
-                    */
-                });
-                /*
+            /*
             data.entry.forEach(function(entry) {
                 
             });
             */
+            entry = data.entry[0];
+            var pageID = entry.id;
+            var timeOfEvent = entry.time;
+            // Iterate over each messaging event
+            entry.messaging.forEach(function(event) {
+                console.log('got another entry!');
+                //receivedMessage(event);
+                /*
+                if (event.message) {
+                    receivedMessage(event);
+                } else {
+                    console.log("Webhook received unknown event: ", event);
+                }
+                */
+            });
+                
         // Assume all went well.
             //
             // You must send back a 200, within 20 seconds, to let us know
@@ -237,6 +239,7 @@ module.exports = function(app){
             // will time out and we will keep trying to resend.
             res.sendStatus(200);
         }
+        /*
         else{
             let messaging_events = req.body.entry[0].messaging
             for (let i = 0; i < messaging_events.length; i++) {
@@ -253,7 +256,7 @@ module.exports = function(app){
                     else{
                         sendTextMessage(sender, "Text received, echo: " + text.substring(0, 200))
                     }
-                    */
+                    //* /
                 }
                 if (event.postback) {
                     let text = JSON.stringify(event.postback)
@@ -266,5 +269,6 @@ module.exports = function(app){
             }
             res.sendStatus(200);
         }
+        */
     });
 }
