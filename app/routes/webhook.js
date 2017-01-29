@@ -154,6 +154,7 @@ receivedMessage = function (event) {
         sendTextMessage(senderID, text);
     }
     else{
+        console.log(' calling send message with text: ' + text);
         sendMessage(senderID, text);
     }
 }
