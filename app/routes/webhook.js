@@ -143,43 +143,44 @@ receivedMessage = function (event, res) {
     var recipientID = event.recipient.id;
     var timeOfMessage = event.timestamp;
     var text = '';
-    if(event.message.is_echo){
-        console.log('it is a echo!');
-        res.sendStatus(200);
+    
+    
+    if (event.message && event.message.text && !event.message.is_echo) {
+        var message = event.message;
+        console.log('event.message = ' + JSON.stringify(message));
+        var messageId = message.mid;
+        text = message.text;
+        var messageAttachments = message.attachments;
+    }
+    else if (event.postback) {
+        text = JSON.stringify(event.postback)
+        console.log('postback received: ' + text);
     }
     else{
-        if (event.message && event.message.text) {
-            var message = event.message;
-            console.log('event.message = ' + JSON.stringify(message));
-            var messageId = message.mid;
-            text = message.text;
-            var messageAttachments = message.attachments;
-        }
-        else if (event.postback) {
-            text = JSON.stringify(event.postback)
-            console.log('postback received: ' + text);
+        // it was probably some other info that we have nothing to do at this point
+        if(event.message && event.message.is_echo){
+            console.log('it is a echo! Returning without doing anything...');
         }
         else{
-            // it was probably some other info that we have nothing to do at this point
             console.log('returning without doing anything...');
-            return;
-        }  
-        if(usersState[senderID] === 'STATE_WEATHER'){
-            usersState[senderID] = null;
-            sendTextMessage(senderID, text);
         }
-        else{
-            console.log(' calling send message with text: ' + text);
-            sendMessage(senderID, text);
-        }
-        // Assume all went well.
-        //
-        // You must send back a 200, within 20 seconds, to let us know
-        // you've successfully received the callback. Otherwise, the request
-        // will time out and we will keep trying to resend.
         res.sendStatus(200);
-    }        
-     
+        return;
+    }  
+    if(usersState[senderID] === 'STATE_WEATHER'){
+        usersState[senderID] = null;
+        sendTextMessage(senderID, text);
+    }
+    else{
+        console.log(' calling send message with text: ' + text);
+        sendMessage(senderID, text);
+    }
+    // Assume all went well.
+    //
+    // You must send back a 200, within 20 seconds, to let us know
+    // you've successfully received the callback. Otherwise, the request
+    // will time out and we will keep trying to resend.
+    res.sendStatus(200);
 }
 
 getWeather = function (callback, location) {
@@ -240,17 +241,8 @@ module.exports = function(app){
                 var timeOfEvent = entry.time;
                 // Iterate over each messaging event
                 entry.messaging.forEach(function(event) {
-                    if(event.message){
-                        console.log('got another entry!');
-                        receivedMessage(event, res);
-                        /*
-                        if (event.message) {
-                            receivedMessage(event);
-                        } else {
-                            console.log("Webhook received unknown event: ", event);
-                        }
-                        */
-                    }
+                    console.log('got another entry!');
+                    receivedMessage(event, res);
                 });
             });
             
