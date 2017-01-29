@@ -134,7 +134,7 @@ sendMessage = function (sender, text) {
     */
 }
 
-receivedMessage = function (event) {
+receivedMessage = function (event, res) {
     console.log('incoming event', event);
     var senderID = event.sender.id;
     var recipientID = event.recipient.id;
@@ -231,7 +231,7 @@ module.exports = function(app){
                 // Iterate over each messaging event
                 entry.messaging.forEach(function(event) {
                     console.log('got another entry!');
-                    receivedMessage(event);
+                    receivedMessage(event, res);
                     /*
                     if (event.message) {
                         receivedMessage(event);
