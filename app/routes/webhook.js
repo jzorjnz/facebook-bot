@@ -139,7 +139,7 @@ receivedMessage = function (event) {
     var text = '';
     if (event.message && event.message.text) {
         var message = event.message;
-        console.log(JSON.stringify(message));
+        console.log('event.message = ' + JSON.stringify(message));
         var messageId = message.mid;
         text = message.text;
         var messageAttachments = message.attachments;
