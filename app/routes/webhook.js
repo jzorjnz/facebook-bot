@@ -133,7 +133,6 @@ receivedMessage = function (event, res) {
     }
     else if (event.message && event.message.attachments && event.message.attachments[0].payload && event.message.attachments[0].payload.coordinates && !event.message.is_echo) {
         console.log('event.message = ' + JSON.stringify(message));
-        var messageId = message.mid;
         var messageAttachment = message.attachments[0];
         text = event.message.attachments[0].payload.coordinates.lat + ',' + event.message.attachments[0].payload.coordinates.long;
     }
