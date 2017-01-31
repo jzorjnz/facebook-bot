@@ -119,7 +119,7 @@ sendMessage = function (sender, text) {
 }
 
 receivedMessage = function (event, res) {
-    console.log('incoming event', event);
+    //console.log('incoming event', event);
     var senderID = event.sender.id;
     var recipientID = event.recipient.id;
     var timeOfMessage = event.timestamp;
@@ -130,7 +130,12 @@ receivedMessage = function (event, res) {
         console.log('event.message = ' + JSON.stringify(message));
         var messageId = message.mid;
         text = message.text;
-        var messageAttachments = message.attachments;
+    }
+    else if (event.message && event.message.attachments && event.message.attachments[0].payload && event.message.attachments[0].payload.coordinates && !event.message.is_echo) {
+        console.log('event.message = ' + JSON.stringify(message));
+        var messageId = message.mid;
+        var messageAttachment = message.attachments[0];
+        text = event.message.attachments[0].payload.coordinates.lat + ',' + event.message.attachments[0].payload.coordinates.long;
     }
     else if (event.postback) {
         text = JSON.stringify(event.postback)
