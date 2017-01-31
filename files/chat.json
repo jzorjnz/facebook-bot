@@ -184,7 +184,7 @@
         "PAYLOAD_SHOW_WEATHER"
       ],
       "response": {
-        "text":"Please share your location:",
+        "text":"Please share or type your location:",
         "quick_replies":[
           {
             "content_type":"location"
