@@ -150,11 +150,22 @@
         "adresse",
         "PAYLOAD_SHOW_ADDRESS"
       ],
-      "response": { 
-        "text": "Address: 141 Rue Danton 92300 Levallois-Perret"
+      "response": {
+        "attachment": {
+            "type": "template",
+            "payload": {
+                "template_type": "generic",
+                "elements": {
+                    "element": {
+                        "title": "141 Rue Danton 92300 Levallois-Perret",
+                        "image_url": "https:\/\/maps.googleapis.com\/maps\/api\/staticmap?size=764x400&center=48.895939,2.278017&zoom=25&markers=48.895939,2.278017",
+                        "item_url": "http:\/\/maps.apple.com\/maps?q=48.895939,2.278017&z=16"
+                    }
+                }
+            }
+        }
       }
     },
-    
     {
       "keywords":[
         "menus", 
