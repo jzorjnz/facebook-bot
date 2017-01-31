@@ -158,7 +158,7 @@
                 "elements": {
                     "element": {
                         "title": "141 Rue Danton 92300 Levallois-Perret",
-                        "image_url": "https:\/\/maps.googleapis.com\/maps\/api\/staticmap?size=764x400&center=48.895939,2.278017&zoom=25&markers=48.895939,2.278017",
+                        "image_url": "https:\/\/maps.googleapis.com\/maps\/api\/staticmap?size=764x400&center=48.895939,2.278017&zoom=15&markers=48.895939,2.278017",
                         "item_url": "http:\/\/maps.apple.com\/maps?q=48.895939,2.278017&z=16"
                     }
                 }
