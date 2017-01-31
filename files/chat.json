@@ -148,6 +148,7 @@
       "keywords":[
         "address", 
         "adresse",
+        "adres",
         "PAYLOAD_SHOW_ADDRESS"
       ],
       "response": {
