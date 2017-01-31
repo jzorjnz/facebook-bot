@@ -119,7 +119,7 @@ sendMessage = function (sender, text) {
 }
 
 receivedMessage = function (event, res) {
-    //console.log('incoming event', event);
+    console.log('incoming event', event);
     var senderID = event.sender.id;
     var recipientID = event.recipient.id;
     var timeOfMessage = event.timestamp;

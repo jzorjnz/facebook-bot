@@ -183,8 +183,13 @@
         "temp", 
         "PAYLOAD_SHOW_WEATHER"
       ],
-      "response": { 
-        "text": "Please enter you location to find out the weather."
+      "response": {
+        "text":"Please share your location:",
+        "quick_replies":[
+          {
+            "content_type":"location"
+          }
+        ]
       }
     },
     {
