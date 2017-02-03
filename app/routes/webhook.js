@@ -188,7 +188,11 @@ getWeather = function (senderID, location, callback) {
                     //var result = body.current;
                     usersState[senderID] = null;
                     callback("Today is " + body.current.temp_c + " °C (" + body.current.temp_f + " °F) and condition is " + body.current.condition.text + " in " + body.location.name);
-                    sendMessage(senderID, 'welcome');    
+                    
+                    setTimeout(function() {
+                        sendMessage(senderID, 'welcome'); 
+                    }, 3000);
+                       
                 }
                 else{
                     console.error('There was an error calling Weather API');
