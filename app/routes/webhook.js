@@ -171,7 +171,7 @@ receivedMessage = function (event, res) {
             getRestaurant( senderID, 
                         coordinates, 
                         function(message) {
-                            callSendAPI(senderID, {text: message});
+                            callSendAPI(senderID, {attachment: message});
                         }
             );
         }
@@ -269,7 +269,19 @@ getRestaurant = function (senderID, location, callback) {
         //output = output + 'Restaurant: ' + entry.name + '\n';
     });
 
-    callback('Closest Restaurant: ' + closest_name);
+    var result = {"type": "template",
+            "payload": {
+                "template_type": "generic",
+                "elements": {
+                    "element": {
+                        "title": closest_name,
+                        "image_url": "https:\/\/maps.googleapis.com\/maps\/api\/staticmap?size=764x400&center=" + closest.lat + "," + closest.long + "&zoom=15&markers=" + closest.lat + "," + closest.long,
+                        "item_url": "http:\/\/maps.apple.com\/maps?q=" + closest.lat + "," + closest.long + "&z=16"
+                    }
+                }
+            }};
+
+    callback(result);
     
     /*
     usersState[senderID] = null;
