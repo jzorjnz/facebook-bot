@@ -251,7 +251,6 @@ getRestaurant = function (senderID, location, callback) {
     if(loc_temp.length > 1){
         loc = {"lat": parseFloat(loc_temp[0]), "long": parseFloat(loc_temp[1])};
         console.log('input location: ' + JSON.stringify(loc));
-        var loc = {"long": 2.5082287999999835, "lat": 48.927868};
         var closest = restaurants.restaurants[0].coordinates;
         var closest_name = restaurants.restaurants[0].name;
         var closest_distance = distance(closest, loc);
