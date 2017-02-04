@@ -224,12 +224,14 @@ getWeather = function (senderID, location, callback) {
 getRestaurant = function (senderID, location, callback) {
     var output = '';
     restaurants.restaurants.forEach(function(entry) {
-        output = output + 'Restaurant: ' + entry.name + '\n';
+        callback('Restaurant: ' + entry.name);
+        //output = output + 'Restaurant: ' + entry.name + '\n';
     });
 
+    /*
     usersState[senderID] = null;
     callback(output);
-    
+    */
     setTimeout(function() {
         sendMessage(senderID, 'welcome'); 
     }, 3000);
