@@ -40,11 +40,6 @@
                   "type": "postback",
                   "title": "Address",
                   "payload": "PAYLOAD_SHOW_ADDRESS"
-                },
-                {
-                  "type": "postback",
-                  "title": "Restaurant",
-                  "payload": "PAYLOAD_SHOW_NEAREST_RESTAURANT"
                 }
               ]
             }]
