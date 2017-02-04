@@ -224,7 +224,7 @@ getWeather = function (senderID, location, callback) {
 getRestaurant = function (senderID, location, callback) {
     var output = '';
     restaurants.restaurants.forEach(function(entry) {
-        callback('Restaurant: ' + entry.name);
+        callback('Restaurant: ' + entry.name + ' coordinates: ' + entry.coordinates.lat + ', ' + entry.coordinates.long);
         //output = output + 'Restaurant: ' + entry.name + '\n';
     });
 
