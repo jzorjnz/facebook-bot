@@ -131,7 +131,7 @@ receivedMessage = function (event, res) {
     var recipientID = event.recipient.id;
     var timeOfMessage = event.timestamp;
     var text = null;
-    
+    var coordinates = null;
     if (event.message && event.message.text && !event.message.is_echo) {
         var message = event.message;
         console.log('event.message = ' + JSON.stringify(message));
@@ -141,7 +141,7 @@ receivedMessage = function (event, res) {
     else if (event.message && event.message.attachments && event.message.attachments[0].payload && event.message.attachments[0].payload.coordinates && !event.message.is_echo) {
         console.log('event.message = ' + JSON.stringify(message));
         var messageAttachment = event.message.attachments[0];
-        var coordinates = messageAttachment.payload.coordinates;
+        coordinates = messageAttachment.payload.coordinates;
         text = coordinates.lat + ',' + coordinates.long;
     }
     else if (event.postback) {
@@ -169,7 +169,7 @@ receivedMessage = function (event, res) {
         }
         else if(usersState[senderID] === 'STATE_RESTAURANT'){
             getRestaurant( senderID, 
-                        text, 
+                        coordinates, 
                         function(message) {
                             callSendAPI(senderID, {text: message});
                         }
@@ -221,13 +221,55 @@ getWeather = function (senderID, location, callback) {
     );
 }
 
+distance = function(position1,position2){
+    var lat1=position1.lat;
+    var lat2=position2.lat;
+    var lon1=position1.long;
+    var lon2=position2.long;
+    var R = 6371000; // metres
+    var φ1 = lat1.toRadians();
+    var φ2 = lat2.toRadians();
+    var Δφ = (lat2-lat1).toRadians();
+    var Δλ = (lon2-lon1).toRadians();
+
+    var a = Math.sin(Δφ/2) * Math.sin(Δφ/2) +
+        Math.cos(φ1) * Math.cos(φ2) *
+        Math.sin(Δλ/2) * Math.sin(Δλ/2);
+    var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+
+    var d = R * c;
+    return d;
+}
+
 getRestaurant = function (senderID, location, callback) {
     var output = '';
+    
+    var loc = {"long": "2.247933200000034", "lat": "48.9228664"};
+    var closest = restaurants.restaurants[0].coordinates;
+    var closest_name = restaurants.restaurants[0].name;
+    var closest_distance = distance(closest, loc);
+    
+    /*
+    for(var i=1; i<locations.length; i++){
+        if(distance(locations[i], location) < closest_distance){
+            closest_distance=distance(locations[i], location);
+            closest=locations[i];
+        }
+    }
+    */
+
     restaurants.restaurants.forEach(function(entry) {
-        callback('Restaurant: ' + entry.name + ' coordinates: ' + entry.coordinates.lat + ', ' + entry.coordinates.long);
+        if(distance(entry.coordinates, loc) < closest_distance){
+            closest_distance = distance(entry.coordinates, loc);
+            closest_name = entry.name;
+            closest = entry.coordinates;
+        }
+        //callback('Closest Restaurant: ' + entry.name + ' coordinates: ' + entry.coordinates.lat + ', ' + entry.coordinates.long);
         //output = output + 'Restaurant: ' + entry.name + '\n';
     });
 
+    callback('Closest Restaurant: ' + closest_name);
+    
     /*
     usersState[senderID] = null;
     callback(output);

@@ -2,247 +2,247 @@
   "restaurants": [
     {
       "name": "O'Tacos Mureaux (prochainement)",
-      "coordinates": {"lat": "1.8905409999999847", "long": "48.97779" }
+      "coordinates": {"long": "1.8905409999999847", "lat": "48.97779" }
     },
     {
       "name": "46 Rue Gabriel Péri",
-      "coordinates": {"lat": "2.247933200000034", "long": "48.9228664" }
+      "coordinates": {"long": "2.247933200000034", "lat": "48.9228664" }
     },
     {
       "name": "O'Tacos",
-      "coordinates": {"lat": "2.4778577999999998", "long": "49.2582363" }
+      "coordinates": {"long": "2.4778577999999998", "lat": "49.2582363" }
     },
     {
       "name": "52 Rue Arthur Chevalier",
-      "coordinates": {"lat": "2.5082287999999835", "long": "48.927868" }
+      "coordinates": {"long": "2.5082287999999835", "lat": "48.927868" }
     },
     {
       "name": "198 Rue de Paris",
-      "coordinates": {"lat": "2.4217691999999715", "long": "48.8561067" }
+      "coordinates": {"long": "2.4217691999999715", "lat": "48.8561067" }
     },
     {
       "name": "O'tacos chilly mazarin",
-      "coordinates": {"lat": "2.3123840000000655", "long": "48.70703399999999" }
+      "coordinates": {"long": "2.3123840000000655", "lat": "48.70703399999999" }
     },
     {
       "name": "O'tacos Choisy le Roi",
-      "coordinates": {"lat": "2.4066910000000235", "long": "48.764371" }
+      "coordinates": {"long": "2.4066910000000235", "lat": "48.764371" }
     },
     {
       "name": "2 Rue Père André Jarlan",
-      "coordinates": {"lat": "2.426622899999984", "long": "48.62453970000001" }
+      "coordinates": {"long": "2.426622899999984", "lat": "48.62453970000001" }
     },
     {
       "name": "O'tacos",
-      "coordinates": {"lat": "2.3723135000000184", "long": "48.8547529" }
+      "coordinates": {"long": "2.3723135000000184", "lat": "48.8547529" }
     },
     {
       "name": "5 Rue des Innocents",
-      "coordinates": {"lat": "2.3478551000000607", "long": "48.8603747" }
+      "coordinates": {"long": "2.3478551000000607", "lat": "48.8603747" }
     },
     {
       "name": "O'Tacos Pantin",
-      "coordinates": {"lat": "2.394025000000056", "long": "48.901301" }
+      "coordinates": {"long": "2.394025000000056", "lat": "48.901301" }
     },
     {
       "name": "O'tacos",
-      "coordinates": {"lat": "2.3806337999999414", "long": "48.6903377" }
+      "coordinates": {"long": "2.3806337999999414", "lat": "48.6903377" }
     },
     {
       "name": "O'Tacos Noisy-le-Sec",
-      "coordinates": {"lat": "2.459870099999989", "long": "48.8960319" }
+      "coordinates": {"long": "2.459870099999989", "lat": "48.8960319" }
     },
     {
       "name": "O'Tacos",
-      "coordinates": {"lat": "2.8853662000000213", "long": "48.95850490000001" }
+      "coordinates": {"long": "2.8853662000000213", "lat": "48.95850490000001" }
     },
     {
       "name": "O'Tacos",
-      "coordinates": {"lat": "2.507846699999959", "long": "48.8849507" }
+      "coordinates": {"long": "2.507846699999959", "lat": "48.8849507" }
     },
     {
       "name": "O'tacos Paris 19",
-      "coordinates": {"lat": "2.38794299999995", "long": "48.884001" }
+      "coordinates": {"long": "2.38794299999995", "lat": "48.884001" }
     },
     {
       "name": "O'Tacos",
-      "coordinates": {"lat": "2.2839781999999786", "long": "48.7368095" }
+      "coordinates": {"long": "2.2839781999999786", "lat": "48.7368095" }
     },
     {
       "name": "O'tacos Rueil-Malmaison",
-      "coordinates": {"lat": "2.1904578999999558", "long": "48.8685789" }
+      "coordinates": {"long": "2.1904578999999558", "lat": "48.8685789" }
     },
     {
       "name": "O'tacos",
-      "coordinates": {"lat": "2.3037870000000567", "long": "48.9007539" }
+      "coordinates": {"long": "2.3037870000000567", "lat": "48.9007539" }
     },
     {
       "name": "O'Tacos",
-      "coordinates": {"lat": "2.2895670999999993", "long": "48.8164138" }
+      "coordinates": {"long": "2.2895670999999993", "lat": "48.8164138" }
     },
     {
       "name": "O'Tacos Mantes-La-Jolie",
-      "coordinates": {"lat": "1.6855199000000312", "long": "48.9989125" }
+      "coordinates": {"long": "1.6855199000000312", "lat": "48.9989125" }
     },
     {
       "name": "O'Tacos - Le Bourget",
-      "coordinates": {"lat": "2.4267151999999896", "long": "48.93512279999999" }
+      "coordinates": {"long": "2.4267151999999896", "lat": "48.93512279999999" }
     },
     {
       "name": "O'Tacos Evry",
-      "coordinates": {"lat": "2.4266230000000633", "long": "48.62454" }
+      "coordinates": {"long": "2.4266230000000633", "lat": "48.62454" }
     },
     {
       "name": "4 Grande Rue",
-      "coordinates": {"lat": "2.3540385000000015", "long": "48.67581980000001" }
+      "coordinates": {"long": "2.3540385000000015", "lat": "48.67581980000001" }
     },
     {
       "name": "127 Avenue Eugène Varlin",
-      "coordinates": {"lat": "2.6002381000000696", "long": "48.9488138" }
+      "coordinates": {"long": "2.6002381000000696", "lat": "48.9488138" }
     },
     {
       "name": "O'Tacos Argenteuil",
-      "coordinates": {"lat": "2.253286000000003", "long": "48.94511900000001" }
+      "coordinates": {"long": "2.253286000000003", "lat": "48.94511900000001" }
     },
     {
       "name": "O'Tacos",
-      "coordinates": {"lat": "2.32647129999998", "long": "48.9505936" }
+      "coordinates": {"long": "2.32647129999998", "lat": "48.9505936" }
     },
     {
       "name": "O'tacos Vigneux Sur Seine",
-      "coordinates": {"lat": "2.420801900000015", "long": "48.7000849" }
+      "coordinates": {"long": "2.420801900000015", "lat": "48.7000849" }
     },
     {
       "name": "O'tacos Pierrefitte",
-      "coordinates": {"lat": "2.3588459999999714", "long": "48.962198" }
+      "coordinates": {"long": "2.3588459999999714", "lat": "48.962198" }
     },
     {
       "name": "O'Tacos Sarcelles",
-      "coordinates": {"lat": "2.378754699999945", "long": "48.977954" }
+      "coordinates": {"long": "2.378754699999945", "lat": "48.977954" }
     },
     {
       "name": "O'tacos",
-      "coordinates": {"lat": "2.060695600000031", "long": "48.755188" }
+      "coordinates": {"long": "2.060695600000031", "lat": "48.755188" }
     },
     {
       "name": "O'Tacos",
-      "coordinates": {"lat": "2.2430875000000015", "long": "48.7828401" }
+      "coordinates": {"long": "2.2430875000000015", "lat": "48.7828401" }
     },
     {
       "name": "O'tacos",
-      "coordinates": {"lat": "2.27794879999999", "long": "48.8426623" }
+      "coordinates": {"long": "2.27794879999999", "lat": "48.8426623" }
     },
     {
       "name": "O'TACOS",
-      "coordinates": {"lat": "2.2443081999999777", "long": "48.8336176" }
+      "coordinates": {"long": "2.2443081999999777", "lat": "48.8336176" }
     },
     {
       "name": "O'tacos Jussieu",
-      "coordinates": {"lat": "2.355213899999967", "long": "48.8458361" }
+      "coordinates": {"long": "2.355213899999967", "lat": "48.8458361" }
     },
     {
       "name": "O'Tacos",
-      "coordinates": {"lat": "2.3575074000000313", "long": "48.9356379" }
+      "coordinates": {"long": "2.3575074000000313", "lat": "48.9356379" }
     },
     {
       "name": "O'Tacos",
-      "coordinates": {"lat": "2.473828000000026", "long": "48.807513" }
+      "coordinates": {"long": "2.473828000000026", "lat": "48.807513" }
     },
     {
       "name": "o'tacos creteil",
-      "coordinates": {"lat": "2.4653657999999723", "long": "48.79091579999999" }
+      "coordinates": {"long": "2.4653657999999723", "lat": "48.79091579999999" }
     },
     {
       "name": "O'Tacos Melun",
-      "coordinates": {"lat": "2.6545337999999674", "long": "48.54272090000001" }
+      "coordinates": {"long": "2.6545337999999674", "lat": "48.54272090000001" }
     },
     {
       "name": "O'tacos",
-      "coordinates": {"lat": "2.4258413999999675", "long": "48.787655" }
+      "coordinates": {"long": "2.4258413999999675", "lat": "48.787655" }
     },
     {
       "name": "O'Tacos",
-      "coordinates": {"lat": "2.479971100000057", "long": "48.8396994" }
+      "coordinates": {"long": "2.479971100000057", "lat": "48.8396994" }
     },
     {
       "name": "O'tacos",
-      "coordinates": {"lat": "2.5492980999999872", "long": "48.8396635" }
+      "coordinates": {"long": "2.5492980999999872", "lat": "48.8396635" }
     },
     {
       "name": "O'tacos neuilly sur marne",
-      "coordinates": {"lat": "2.5308952000000318", "long": "48.859947" }
+      "coordinates": {"long": "2.5308952000000318", "lat": "48.859947" }
     },
     {
       "name": "O'tacos",
-      "coordinates": {"lat": "2.575630100000012", "long": "48.8644457" }
+      "coordinates": {"long": "2.575630100000012", "lat": "48.8644457" }
     },
     {
       "name": "O'Tacos",
-      "coordinates": {"lat": "2.484852100000012", "long": "48.8203957" }
+      "coordinates": {"long": "2.484852100000012", "lat": "48.8203957" }
     },
     {
       "name": "O'Tacos Nanterre",
-      "coordinates": {"lat": "2.2226769000000104", "long": "48.9113892" }
+      "coordinates": {"long": "2.2226769000000104", "lat": "48.9113892" }
     },
     {
       "name": "O'tacos Saint Ouen",
-      "coordinates": {"lat": "2.3324850999999853", "long": "48.907228" }
+      "coordinates": {"long": "2.3324850999999853", "lat": "48.907228" }
     },
     {
       "name": "O'Tacos",
-      "coordinates": {"lat": "2.278987700000016", "long": "49.1499505" }
+      "coordinates": {"long": "2.278987700000016", "lat": "49.1499505" }
     },
     {
       "name": "O'tacos Chelles",
-      "coordinates": {"lat": "2.613440999999966", "long": "48.87730699999999" }
+      "coordinates": {"long": "2.613440999999966", "lat": "48.87730699999999" }
     },
     {
       "name": "O'Tacos Arcueil",
-      "coordinates": {"lat": "2.3357539999999517", "long": "48.807219" }
+      "coordinates": {"long": "2.3357539999999517", "lat": "48.807219" }
     },
     {
       "name": "O'Tacos",
-      "coordinates": {"lat": "2.402617200000009", "long": "48.8562102" }
+      "coordinates": {"long": "2.402617200000009", "lat": "48.8562102" }
     },
     {
       "name": "O'tacos",
-      "coordinates": {"lat": "2.0775304000000006", "long": "49.0370339" }
+      "coordinates": {"long": "2.0775304000000006", "lat": "49.0370339" }
     },
     {
       "name": "O'TACOS",
-      "coordinates": {"lat": "2.3350867000000335", "long": "48.8832819" }
+      "coordinates": {"long": "2.3350867000000335", "lat": "48.8832819" }
     },
     {
       "name": "O'tacos Saint Denis",
-      "coordinates": {"lat": "2.356440099999986", "long": "48.9406875" }
+      "coordinates": {"long": "2.356440099999986", "lat": "48.9406875" }
     },
     {
       "name": "O'Tacos",
-      "coordinates": {"lat": "2.383832200000029", "long": "48.8733022" }
+      "coordinates": {"long": "2.383832200000029", "lat": "48.8733022" }
     },
     {
       "name": "O'Tacos",
-      "coordinates": {"lat": "2.47570369999994", "long": "48.9592266" }
+      "coordinates": {"long": "2.47570369999994", "lat": "48.9592266" }
     },
     {
       "name": "1 Avenue Albert Sarraut gousainville",
-      "coordinates": {"lat": "2.4636703999999554", "long": "49.024997" }
+      "coordinates": {"long": "2.4636703999999554", "lat": "49.024997" }
     },
     {
       "name": "19 Avenue Anatole France",
-      "coordinates": {"lat": "2.4935199999999895", "long": "48.933751" }
+      "coordinates": {"long": "2.4935199999999895", "lat": "48.933751" }
     },
     {
       "name": "108 Avenue Salvador Allende",
-      "coordinates": {"lat": "2.5704051000000163", "long": "48.9606544" }
+      "coordinates": {"long": "2.5704051000000163", "lat": "48.9606544" }
     },
     {
       "name": "4 Résidence de la Gare",
-      "coordinates": {"lat": "2.197420299999976", "long": "49.0072367" }
+      "coordinates": {"long": "2.197420299999976", "lat": "49.0072367" }
     },
     {
       "name": "41 Rue de Paris",
-      "coordinates": {"lat": "2.2324286000000484", "long": "48.9815812" }
+      "coordinates": {"long": "2.2324286000000484", "lat": "48.9815812" }
     }
   ]
 }
