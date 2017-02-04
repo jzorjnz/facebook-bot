@@ -245,7 +245,7 @@ distance = function(position1,position2){
 getRestaurant = function (senderID, location, callback) {
     var output = '';
     
-    var loc_temp = str.split(',');
+    var loc_temp = location.split(',');
     var loc = {"long": 2.5082287999999835, "lat": 48.927868};
     
     if(loc_temp.length > 1){
@@ -297,7 +297,6 @@ getRestaurant = function (senderID, location, callback) {
             sendMessage(senderID, 'welcome'); 
         }, 3000);
     }
-    
 }
 
 module.exports = function(app){
