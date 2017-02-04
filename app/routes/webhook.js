@@ -169,9 +169,9 @@ receivedMessage = function (event, res) {
         }
         else if(usersState[senderID] === 'STATE_RESTAURANT'){
             getRestaurant( senderID, 
-                        coordinates, 
+                        text, 
                         function(message) {
-                            callSendAPI(senderID, {attachment: message});
+                            callSendAPI(senderID, message);
                         }
             );
         }
@@ -245,51 +245,59 @@ distance = function(position1,position2){
 getRestaurant = function (senderID, location, callback) {
     var output = '';
     
+    var loc_temp = str.split(',');
     var loc = {"long": 2.5082287999999835, "lat": 48.927868};
-    var closest = restaurants.restaurants[0].coordinates;
-    var closest_name = restaurants.restaurants[0].name;
-    var closest_distance = distance(closest, loc);
     
-    /*
-    for(var i=1; i<locations.length; i++){
-        if(distance(locations[i], location) < closest_distance){
-            closest_distance=distance(locations[i], location);
-            closest=locations[i];
-        }
-    }
-    */
+    if(loc_temp.length > 1){
+        loc = {"lat": loc_temp[0], "long": loc_temp[1]};
 
-    restaurants.restaurants.forEach(function(entry) {
-        if(distance(entry.coordinates, loc) < closest_distance){
-            closest_distance = distance(entry.coordinates, loc);
-            closest_name = entry.name;
-            closest = entry.coordinates;
-        }
-        //callback('Closest Restaurant: ' + entry.name + ' coordinates: ' + entry.coordinates.lat + ', ' + entry.coordinates.long);
-        //output = output + 'Restaurant: ' + entry.name + '\n';
-    });
+        var loc = {"long": 2.5082287999999835, "lat": 48.927868};
+        var closest = restaurants.restaurants[0].coordinates;
+        var closest_name = restaurants.restaurants[0].name;
+        var closest_distance = distance(closest, loc);
+        
+        restaurants.restaurants.forEach(function(entry) {
+            if(distance(entry.coordinates, loc) < closest_distance){
+                closest_distance = distance(entry.coordinates, loc);
+                closest_name = entry.name;
+                closest = entry.coordinates;
+            }
+            //callback('Closest Restaurant: ' + entry.name + ' coordinates: ' + entry.coordinates.lat + ', ' + entry.coordinates.long);
+            //output = output + 'Restaurant: ' + entry.name + '\n';
+        });
 
-    var result = {"type": "template",
-            "payload": {
-                "template_type": "generic",
-                "elements": {
-                    "element": {
-                        "title": closest_name,
-                        "image_url": "https:\/\/maps.googleapis.com\/maps\/api\/staticmap?size=764x400&center=" + closest.lat + "," + closest.long + "&zoom=15&markers=" + closest.lat + "," + closest.long,
-                        "item_url": "http:\/\/maps.apple.com\/maps?q=" + closest.lat + "," + closest.long + "&z=16"
+        var result = {
+            attachment: {
+                "type": "template",
+                "payload": {
+                    "template_type": "generic",
+                    "elements": {
+                        "element": {
+                            "title": closest_name,
+                            "image_url": "https:\/\/maps.googleapis.com\/maps\/api\/staticmap?size=764x400&center=" + closest.lat + "," + closest.long + "&zoom=15&markers=" + closest.lat + "," + closest.long,
+                            "item_url": "http:\/\/maps.apple.com\/maps?q=" + closest.lat + "," + closest.long + "&z=16"
+                        }
                     }
                 }
-            }};
-
-    callback(result);
+            }
+        };
+        
+        usersState[senderID] = null;
+        callback(result);
+        
+        setTimeout(function() {
+            sendMessage(senderID, 'welcome'); 
+        }, 3000);
+    }
+    else{
+        usersState[senderID] = null;
+        callback({text: "Address incorrect!"});
+        
+        setTimeout(function() {
+            sendMessage(senderID, 'welcome'); 
+        }, 3000);
+    }
     
-    /*
-    usersState[senderID] = null;
-    callback(output);
-    */
-    setTimeout(function() {
-        sendMessage(senderID, 'welcome'); 
-    }, 3000);
 }
 
 module.exports = function(app){
