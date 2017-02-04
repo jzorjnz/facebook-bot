@@ -244,7 +244,7 @@ distance = function(position1,position2){
 getRestaurant = function (senderID, location, callback) {
     var output = '';
     
-    var loc = {"long": "2.247933200000034", "lat": "48.9228664"};
+    var loc = {"long": 2.247933200000034, "lat": 48.9228664};
     var closest = restaurants.restaurants[0].coordinates;
     var closest_name = restaurants.restaurants[0].name;
     var closest_distance = distance(closest, loc);
