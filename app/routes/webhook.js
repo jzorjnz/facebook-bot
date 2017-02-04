@@ -226,29 +226,26 @@ distance = function(position1,position2){
     var lat2=position2.lat;
     var lon1=position1.long;
     var lon2=position2.long;
-    
-    console.log('lat1: ' + lat1 + 'long1: ' + lon1 + ' lat2: ' + lat2 + ' long2: ' + lon2);
-    
     var R = 6371000; // metres
-    var p1 = lat1 * Math.PI / 180;
-    var p2 = lat2 * Math.PI / 180;
-    var dp = (lat2-lat1) * Math.PI / 180;
-    var dl = (lon2-lon1) * Math.PI / 180;
+    var φ1 = lat1 * Math.PI / 180;
+    var φ2 = lat2 * Math.PI / 180;
+    var Δφ = (lat2-lat1) * Math.PI / 180;
+    var Δλ = (lon2-lon1) * Math.PI / 180;
 
-    var a = Math.sin(dp/2) * Math.sin(dp/2) +
-        Math.cos(p1) * Math.cos(p2) *
-        Math.sin(dl/2) * Math.sin(dl/2);
+    var a = Math.sin(Δφ/2) * Math.sin(Δφ/2) +
+        Math.cos(φ1) * Math.cos(φ2) *
+        Math.sin(Δλ/2) * Math.sin(Δλ/2);
     var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
 
     var d = R * c;
-    console.log('distance: ' + d + 'R: ' + R + ' c: ' + c + ' a: ' + a);
+    //console.log('distance: ' + d + 'R: ' + R + ' c: ' + c + ' a: ' + a);
     return d;
 }
 
 getRestaurant = function (senderID, location, callback) {
     var output = '';
     
-    var loc = {"long": 2.247933200000034, "lat": 48.9228664};
+    var loc = {"long": 2.5082287999999835, "lat": 48.927868};
     var closest = restaurants.restaurants[0].coordinates;
     var closest_name = restaurants.restaurants[0].name;
     var closest_distance = distance(closest, loc);
