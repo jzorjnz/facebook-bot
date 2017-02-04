@@ -249,7 +249,7 @@ getRestaurant = function (senderID, location, callback) {
     var loc = {"long": 2.5082287999999835, "lat": 48.927868};
     
     if(loc_temp.length > 1){
-        loc = {"lat": loc_temp[0], "long": loc_temp[1]};
+        loc = {"lat": parseFloat(loc_temp[0]), "long": parseFloat(loc_temp[1])};
 
         var loc = {"long": 2.5082287999999835, "lat": 48.927868};
         var closest = restaurants.restaurants[0].coordinates;
