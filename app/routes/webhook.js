@@ -226,6 +226,9 @@ distance = function(position1,position2){
     var lat2=position2.lat;
     var lon1=position1.long;
     var lon2=position2.long;
+    
+    console.log('lat1: ' + lat1 + 'long1: ' + long1 + ' lat2: ' + lat2 + ' long2: ' + long2);
+    
     var R = 6371000; // metres
     var p1 = lat1 * Math.PI / 180;
     var p2 = lat2 * Math.PI / 180;
