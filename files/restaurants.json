@@ -1,5 +1,5 @@
 {
-  "Placemark": [
+  "restaurants": [
     {
       "name": "O'Tacos Mureaux (prochainement)",
       "Point": { "coordinates": "1.8905409999999847,48.97779" }

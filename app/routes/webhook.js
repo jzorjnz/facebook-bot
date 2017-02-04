@@ -223,8 +223,8 @@ getWeather = function (senderID, location, callback) {
 
 getRestaurant = function (senderID, location, callback) {
     var output = '';
-    restaurants.Restaurants.forEach(function(restaurant) {
-        output = output + 'Restaurant: ' + restaurant.name + '\n'; 
+    restaurants.restaurants.forEach(function(entry) {
+        output = output + 'Restaurant: ' + entry.name + '\n';
     });
 
     usersState[senderID] = null;
