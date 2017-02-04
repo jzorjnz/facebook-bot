@@ -206,7 +206,7 @@ getWeather = function (senderID, location, callback) {
                     
                     setTimeout(function() {
                         sendMessage(senderID, 'welcome'); 
-                    }, 3000);
+                    }, 1500);
                        
                 }
                 else{
@@ -286,7 +286,7 @@ getRestaurant = function (senderID, location, callback) {
         
         setTimeout(function() {
             sendMessage(senderID, 'welcome'); 
-        }, 3000);
+        }, 1500);
     }
     else{
         usersState[senderID] = null;
@@ -294,7 +294,7 @@ getRestaurant = function (senderID, location, callback) {
         
         setTimeout(function() {
             sendMessage(senderID, 'welcome'); 
-        }, 3000);
+        }, 1500);
     }
 }
 
