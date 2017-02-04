@@ -238,7 +238,7 @@ distance = function(position1,position2){
     var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
 
     var d = R * c;
-    console.log('distance: ' + d);
+    console.log('distance: ' + d + 'R: ' + R + ' c: ' + c);
     return d;
 }
 
