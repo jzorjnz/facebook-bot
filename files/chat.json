@@ -6,6 +6,7 @@
     "PAYLOAD_SHOW_BOOKING": "PAYLOAD_SHOW_BOOKING",
     "PAYLOAD_SHOW_SCORE": "PAYLOAD_SHOW_SCORE",
     "PAYLOAD_SHOW_CALENDAR": "PAYLOAD_SHOW_CALENDAR",
+    "PAYLOAD_SHOW_NEAREST_RESTAURANT": "PAYLOAD_SHOW_NEAREST_RESTAURANT",
     "PAYLOAD_SHOW_ADDRESS": "PAYLOAD_SHOW_ADDRESS"
   },
   "chat":[
@@ -39,6 +40,11 @@
                   "type": "postback",
                   "title": "Address",
                   "payload": "PAYLOAD_SHOW_ADDRESS"
+                },
+                {
+                  "type": "postback",
+                  "title": "Restaurant",
+                  "payload": "PAYLOAD_SHOW_NEAREST_RESTAURANT"
                 }
               ]
             }]
@@ -182,6 +188,20 @@
         "weath",
         "temp", 
         "PAYLOAD_SHOW_WEATHER"
+      ],
+      "response": {
+        "text":"Please share or type your location:",
+        "quick_replies":[
+          {
+            "content_type":"location"
+          }
+        ]
+      }
+    },
+    {
+      "keywords":[
+        "restaurant", 
+        "PAYLOAD_SHOW_NEAREST_RESTAURANT"
       ],
       "response": {
         "text":"Please share or type your location:",

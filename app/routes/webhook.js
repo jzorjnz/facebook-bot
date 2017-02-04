@@ -5,6 +5,8 @@ const app = express();
 
 const keys = require('../../config/keys.json');
 const chat = require('../../files/chat');
+const restaurants = require('../../files/restaurants');
+
 handleError = function(err) {
   console.log ("Got an error", err);
 }
@@ -103,7 +105,7 @@ sendTextMessage = function (sender, text) {
 */
 
 sendMessage = function (sender, text) {
-    let messageData = { text: 'Hello! :D :) Please choose an activity from the side menu! :)'};
+    let messageData = { text: 'Please choose an activity from the side menu! :)'};
     chat.chat.forEach(function(element) {
         element.keywords.forEach(function(keyword) {
             if(text.toLowerCase().includes(keyword.toLowerCase())){
@@ -112,6 +114,11 @@ sendMessage = function (sender, text) {
             if(text.toLowerCase().includes('weather')){
                 console.log('setting state to weather...');
                 usersState[sender] = 'STATE_WEATHER';
+            }
+            
+            if(text.toLowerCase().includes('restaurant')){
+                console.log('setting state to restaurant...');
+                usersState[sender] = 'STATE_RESTAURANT';
             }
         }, this);
     }, this);
@@ -160,6 +167,14 @@ receivedMessage = function (event, res) {
             );
 
         }
+        else if(usersState[senderID] === 'STATE_RESTAURANT'){
+            getRestaurant( senderID, 
+                        text, 
+                        function(message) {
+                            callSendAPI(senderID, {text: message});
+                        }
+            );
+        }
         else{
             if (text === 'Generic') {
                 sendGenericMessage(senderID);
@@ -204,6 +219,20 @@ getWeather = function (senderID, location, callback) {
             }
         }
     );
+}
+
+getRestaurant = function (senderID, location, callback) {
+    var output = '';
+    restaurants.Restaurants.forEach(function(restaurant) {
+        output = output + 'Restaurant: ' + restaurant.name + '\n'; 
+    });
+
+    usersState[senderID] = null;
+    callback(output);
+    
+    setTimeout(function() {
+        sendMessage(senderID, 'welcome'); 
+    }, 3000);
 }
 
 module.exports = function(app){
