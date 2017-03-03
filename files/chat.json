@@ -24,7 +24,7 @@
             "template_type": "generic",
             "elements": [{
               "title": "Welcome!",
-              "subtitle": "Hi! I am facebook bot and I am here to assist you. Please choose any option to begin",
+              "subtitle": "Hi! I am facebook test bot and I am here to assist you. Please choose any option to begin",
               "buttons": [
                 {
                   "type": "postback",
